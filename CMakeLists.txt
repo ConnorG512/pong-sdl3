@@ -15,7 +15,10 @@ elseif (CMAKE_SYSTEM_NAME STREQUAL "Linux")
 endif()
 
 add_executable(${PROJECT_NAME} 
-  src/main.cpp)
+  src/main.cpp
+  src/sdl_window.h 
+  src/sdl_window.cpp
+)
 
 # External libraries
 include(FetchContent)
