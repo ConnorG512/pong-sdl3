@@ -6,7 +6,7 @@
 #include <ostream>
 #include <string>
 
-#include "sdl_error.h"
+#include "sdl_error_util.h"
 
 class GameWindow {
   private:

@@ -1,4 +1,4 @@
-#include "sdl_error.h"
+#include "sdl_error_util.h"
 
 void SDLError::SDLPrintError(void* sdl_error){
   if (sdl_error == nullptr) {

@@ -18,8 +18,10 @@ add_executable(${PROJECT_NAME}
   src/main.cpp
   src/sdl_window.h 
   src/sdl_window.cpp
-  src/sdl_error.h
-  src/sdl_error.cpp
+  src/sdl_error_util.h
+  src/sdl_error_util.cpp
+  src/player.h 
+  src/player.cpp
 )
 
 # External libraries
