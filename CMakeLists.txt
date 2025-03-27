@@ -22,6 +22,8 @@ add_executable(${PROJECT_NAME}
   src/sdl_error_util.cpp
   src/player.h 
   src/player.cpp
+  src/ball.h 
+  src/ball.cpp 
 )
 
 # External libraries
