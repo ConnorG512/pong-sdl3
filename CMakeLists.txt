@@ -6,15 +6,16 @@ project(${PROJECT_NAME}
   VERSION 1.0
   DESCRIPTION "Pong in SDL 3"
   LANGUAGES CXX)
-add_executable(${PROJECT_NAME} 
-  src/main.cpp)
 
 # OS specific options
 if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
-  target_compile_options(${PROJECT_NAME} PRIVATE /W4)
+  # target_compile_options(${PROJECT_NAME} PRIVATE /W4)
 elseif (CMAKE_SYSTEM_NAME STREQUAL "Linux")
-  target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic)
+  # target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic)
 endif()
+
+add_executable(${PROJECT_NAME} 
+  src/main.cpp)
 
 # External libraries
 include(FetchContent)
@@ -23,3 +24,5 @@ FetchContent_Declare(sdl3
   GIT_TAG release-3.2.8
 )
 FetchContent_MakeAvailable(sdl3)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE SDL3::SDL3)
