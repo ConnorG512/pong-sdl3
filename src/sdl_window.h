@@ -6,6 +6,8 @@
 #include <ostream>
 #include <string>
 
+#include "sdl_error.h"
+
 class GameWindow {
   private:
     // Variables
@@ -18,8 +20,6 @@ class GameWindow {
     //METHOD
     // Create the window with the title, x resolution and y resolution.
     void createWindow();
-    // Checks to make sure that a window was successfully created will log and exit if unsuccessful
-    void checkForWindowError();
 
   public:
     // CONSTRUCTOR
