@@ -24,6 +24,8 @@ add_executable(${PROJECT_NAME}
   src/player.cpp
   src/ball.h 
   src/ball.cpp 
+  src/sdl_renderer.h
+  src/sdl_renderer.cpp
 )
 
 # External libraries

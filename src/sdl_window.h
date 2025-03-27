@@ -13,8 +13,8 @@ class GameWindow {
     // Variables
     SDL_Window *m_game_window;
     std::string m_window_title;
-    int m_window_size_x;
-    int m_window_size_y;
+    const int m_window_size_x;
+    const int m_window_size_y;
     bool m_done { false };
 
     //METHOD

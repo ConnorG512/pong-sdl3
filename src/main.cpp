@@ -1,5 +1,6 @@
 #include <SDL3/SDL_events.h>
 #include <SDL3/SDL_oldnames.h>
+#include <SDL3/SDL_rect.h>
 
 #include "sdl_window.h"
 
@@ -7,6 +8,7 @@ int main (int, char **) {
   bool finished_running { false };
   GameWindow game_window = {"Pong", 1600, 900};
   
+  // Draw a rectangle
   while (!finished_running) {
     SDL_Event event;
 
@@ -18,6 +20,5 @@ int main (int, char **) {
     // Game logic here: 
 
   }
-
   return 0;
 }
