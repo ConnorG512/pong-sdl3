@@ -11,7 +11,6 @@
 class GameWindow {
   private:
     // Variables
-    SDL_Window *m_game_window;
     std::string m_window_title;
     const int m_window_size_x;
     const int m_window_size_y;
@@ -22,6 +21,7 @@ class GameWindow {
     void createWindow();
 
   public:
+    SDL_Window *m_game_window;
     // CONSTRUCTOR
     // Expects the window tite x resolution and y resolution to be passed. Will create the window on construct.
     GameWindow(const std::string& window_title, const int window_size_x, const int window_size_y);

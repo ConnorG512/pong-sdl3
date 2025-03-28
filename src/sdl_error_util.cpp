@@ -1,8 +1,9 @@
 #include "sdl_error_util.h"
+#include <string>
 
-void SDLError::SDLPrintError(void* sdl_error){
+void SDLError::SDLPrintError(void* sdl_error, std::string source_file_path){
   if (sdl_error == nullptr) {
-    std::cout << "Failed to create SDL window! Error: " << SDL_GetError() << std::endl;
+    std::cout << "SDL Error! " << "Path: " << source_file_path << " Error: " << SDL_GetError() << std::endl;
     exit(1);
   }
 }
