@@ -9,6 +9,8 @@
 
 #include "game_window.h"
 #include "sdl_error_util.h"
+#include "sprite.h"
+
 
 int main (int, char **) {
   bool finished_running { false };
@@ -20,6 +22,10 @@ int main (int, char **) {
   printf("Recrangle result %b ", result);
   printf("Renderer address from Rec: %p \n", game_window->m_game_renderer);
   SDLError::SDLPrintError(game_window->m_game_renderer, "src/main.cpp");
+  
+  // Sprite creation
+  std::unique_ptr<Sprite> sprite_1{ new Sprite(100, 300, 10, 300, 255, 255, 255, 255, game_window->m_game_renderer)};
+  std::unique_ptr<Sprite> sprite_2{ new Sprite(1500, 300, 10, 300, 255, 255, 255, 255, game_window->m_game_renderer)};
 
   while (!finished_running) {
     SDL_Event event;
@@ -35,10 +41,10 @@ int main (int, char **) {
     SDL_SetRenderDrawColor(game_window->m_game_renderer, 0, 0, 0, 255);
     SDL_RenderClear(game_window->m_game_renderer);
     
-    // Square
-    SDL_SetRenderDrawColor(game_window->m_game_renderer, 255, 255, 255, 255);
-    SDL_RenderFillRect(game_window->m_game_renderer, &rectangle);
-    
+    // Player sprites
+    sprite_1->colorSprite();
+    sprite_2->colorSprite(); 
+
     SDL_RenderPresent(game_window->m_game_renderer); 
   }
   return 0;
