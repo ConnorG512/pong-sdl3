@@ -15,7 +15,7 @@ int main (int, char **) {
   // Create a game window on heap memory.
   std::unique_ptr<GameWindow> game_window{ new GameWindow("Pong", 1600, 900)};
   
-  SDL_FRect rectangle {0, 0, 400, 400};
+  SDL_FRect rectangle {100, 350, 10, 200};
   bool result = SDL_RenderRect(game_window->m_game_renderer, &rectangle);
   printf("Recrangle result %b ", result);
   printf("Renderer address from Rec: %p \n", game_window->m_game_renderer);
@@ -31,12 +31,15 @@ int main (int, char **) {
     } 
     // Game logic here: 
     SDL_Delay(16);
+    // Background colour
+    SDL_SetRenderDrawColor(game_window->m_game_renderer, 0, 0, 0, 255);
     SDL_RenderClear(game_window->m_game_renderer);
-
+    
+    // Square
     SDL_SetRenderDrawColor(game_window->m_game_renderer, 255, 255, 255, 255);
     SDL_RenderFillRect(game_window->m_game_renderer, &rectangle);
     
-    
+    SDL_RenderPresent(game_window->m_game_renderer); 
   }
   return 0;
 }
