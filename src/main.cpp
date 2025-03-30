@@ -10,7 +10,7 @@
 #include "game_window.h"
 #include "sdl_error_util.h"
 #include "sprite.h"
-
+#include "divider.h"
 
 int main (int, char **) {
   bool finished_running { false };
@@ -19,6 +19,8 @@ int main (int, char **) {
   SDLError::SDLPrintError(game_window->m_game_renderer, "src/main.cpp");
   printf("game_window address: %p \n", &game_window);  
   
+  // Divider 
+  std::unique_ptr<Divider> background_divider{ new Divider(game_window->m_game_renderer)};
   // Sprite creation
   std::unique_ptr<Sprite> player_paddle_1{ new Sprite(100, 300, 10, 300, 255, 255, 255, 255, game_window->m_game_renderer)};
   printf("player_paddle_1 address: %p \n", &player_paddle_1);  
@@ -39,6 +41,8 @@ int main (int, char **) {
     SDL_SetRenderDrawColor(game_window->m_game_renderer, 0, 0, 0, 255);
     SDL_RenderClear(game_window->m_game_renderer);
     
+    // Divider 
+    background_divider->drawDividerOnScreen();
     // Player sprites
     player_paddle_1->colorSprite();
     player_paddle_2->colorSprite(); 

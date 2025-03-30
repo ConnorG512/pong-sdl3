@@ -1,3 +1,6 @@
+#ifndef SPRITE_H
+#define SPRITE_H
+
 #include <SDL3/SDL_render.h>
 #include <SDL3/SDL_rect.h>
 
@@ -22,3 +25,5 @@ class Sprite {
   // CONSTRUCTOR
   Sprite(float pos_x, float pos_y, float size_x, float size_y, int color_r, int color_g, int color_b, int color_a, SDL_Renderer* renderer);
 };
+
+#endif // SPRITE_H

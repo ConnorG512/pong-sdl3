@@ -26,6 +26,8 @@ add_executable(${PROJECT_NAME}
   src/ball.cpp 
   src/sprite.h 
   src/sprite.cpp
+  src/divider.h 
+  src/divider.cpp
 )
 
 # External libraries

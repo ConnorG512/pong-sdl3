@@ -1,3 +1,6 @@
+#ifndef PLAYER_H
+#define PLAYER_H
+
 #include <string>
 class Player{
   public:
@@ -8,3 +11,4 @@ class Player{
     std::string m_player_name; 
 };
 
+#endif
