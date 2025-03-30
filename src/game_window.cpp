@@ -8,10 +8,6 @@ GameWindow::GameWindow(const std::string& window_title, const int window_size_x,
     createWindow();
     SDLError::SDLPrintError(m_game_window, "sdl_window.cpp");
     createRenderer();
-    printf("Game window Address: %p \n", &m_game_window);
-    printf("Game renderer Address: %p \n", &m_game_renderer);
-    printf("Size X Address: %p \n", &m_window_size_x);
-    printf("Size Y renderer Address: %p \n", &m_window_size_y);
   }
 // DESTRUCTOR
 GameWindow::~GameWindow() {
