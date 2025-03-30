@@ -13,6 +13,9 @@ class Divider {
   private:
   SDL_Renderer* m_renderer;
   Sprite m_sprite_0;
+  Sprite m_sprite_1;
+  Sprite m_sprite_2;
+  Sprite m_sprite_3;
 };
 
 #endif // !DIVIDER_H
