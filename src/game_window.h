@@ -1,3 +1,6 @@
+#ifndef GAME_WINDOW_H
+#define GAME_WINDOW_H
+
 #include <SDL3/SDL_video.h>
 #include <SDL3/SDL_error.h>
 #include <SDL3/SDL_init.h>
@@ -34,3 +37,5 @@ class GameWindow {
     // Will Destroy the window and quit SDL
     ~GameWindow();
 };
+
+#endif // GAME_WINDOW_H
