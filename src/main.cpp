@@ -28,14 +28,14 @@ int main (int, char **) {
     while (SDL_PollEvent(&event)) {
       // Exit by hitting the close button on window.
       switch (event.type) {
+        // Cross button hit on window.
         case SDL_EVENT_QUIT:
           finished_running = true;
         break;
         
-        // Exit the game with a button press.
+        // Keyboard controls
         case SDL_EVENT_KEY_DOWN:
           switch (event.key.key) {
-            // Escape key
             case SDLK_ESCAPE:
               finished_running = true;
               printf("Escape key has been pressed! \n");
