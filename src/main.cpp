@@ -11,14 +11,14 @@ int main (int, char **) {
   bool finished_running { false };
   // Create a game window on heap memory.
   std::unique_ptr<GameWindow> game_window{ new GameWindow("Pong")};
-  SDLError::SDLPrintError(game_window->m_game_renderer, "src/main.cpp");
-  printf("game_window address: %p \n", &game_window);  
   // Divider 
   std::unique_ptr<Divider> background_divider{ new Divider(game_window->m_game_renderer)};
   // Player creation
   std::unique_ptr<Player> player_paddle_1 { new Player(100, 300, 10, 300, game_window->m_game_renderer)};
-  printf("player_paddle_1 address: %p \n", &player_paddle_1);  
   std::unique_ptr<Player> player_paddle_2 { new Player(1500, 300, 10 ,300, game_window->m_game_renderer)};
+
+  printf("game_window address: %p \n", &game_window);  
+  printf("player_paddle_1 address: %p \n", &player_paddle_1);  
   printf("player_paddle_2 address: %p \n", &player_paddle_2);  
   while (!finished_running) {
     SDL_Event event;
