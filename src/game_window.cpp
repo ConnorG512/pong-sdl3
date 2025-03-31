@@ -14,6 +14,12 @@ GameWindow::~GameWindow() {
   SDL_DestroyWindow(m_game_window);
   SDL_Quit();
 }
+int GameWindow::GetWindowSizeX() {
+  return m_window_size_x;
+}
+int GameWindow::GetWindowSizeY() {
+  return m_window_size_y;
+}
 
 // Private
 void GameWindow::createWindow() {

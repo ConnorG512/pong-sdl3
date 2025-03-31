@@ -25,6 +25,8 @@ class GameWindow {
   public:
     SDL_Window *m_game_window;
     SDL_Renderer *m_game_renderer;
+    int GetWindowSizeX();
+    int GetWindowSizeY();
     // CONSTRUCTOR
     // Expects the window tite x resolution and y resolution to be passed. Will create the window on construct.
     GameWindow(const std::string& window_title, const int window_size_x, const int window_size_y);
