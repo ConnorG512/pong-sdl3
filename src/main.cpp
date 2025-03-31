@@ -10,7 +10,7 @@
 int main (int, char **) {
   bool finished_running { false };
   // Create a game window on heap memory.
-  std::unique_ptr<GameWindow> game_window{ new GameWindow("Pong", 1600, 900)};
+  std::unique_ptr<GameWindow> game_window{ new GameWindow("Pong")};
   SDLError::SDLPrintError(game_window->m_game_renderer, "src/main.cpp");
   printf("game_window address: %p \n", &game_window);  
   // Divider 

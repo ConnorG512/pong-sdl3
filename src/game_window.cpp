@@ -3,8 +3,8 @@
 
 // Public
 // CONSTRUCTOR
-GameWindow::GameWindow(const std::string& window_title, const int window_size_x, const int window_size_y)
-  : m_window_title { window_title }, m_window_size_x { window_size_x }, m_window_size_y { window_size_y} {
+GameWindow::GameWindow(const std::string& window_title)
+  : m_window_title { window_title } {
     createWindow();
     SDLError::SDLPrintError(m_game_window, "sdl_window.cpp");
     createRenderer();

@@ -16,8 +16,8 @@ class GameWindow {
   private:
     // Variables
     std::string m_window_title;
-    const int m_window_size_x;
-    const int m_window_size_y;
+    const int m_window_size_x { 1600 };
+    const int m_window_size_y { 900 };
     bool m_done { false };
 
     //METHOD
@@ -31,8 +31,8 @@ class GameWindow {
     int GetWindowSizeX();
     int GetWindowSizeY();
     // CONSTRUCTOR
-    // Expects the window tite x resolution and y resolution to be passed. Will create the window on construct.
-    GameWindow(const std::string& window_title, const int window_size_x, const int window_size_y);
+    // Create a window with a titel 1600 x 900 is the default resoltution
+    GameWindow(const std::string& window_title);
     // DESTRUCTOR
     // Will Destroy the window and quit SDL
     ~GameWindow();
