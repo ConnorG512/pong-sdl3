@@ -5,7 +5,6 @@
 #include "game_window.h"
 #include "player.h"
 #include "sdl_error_util.h"
-#include "sprite.h"
 #include "divider.h"
 
 int main (int, char **) {
@@ -17,12 +16,10 @@ int main (int, char **) {
   // Divider 
   std::unique_ptr<Divider> background_divider{ new Divider(game_window->m_game_renderer)};
   // Player creation
-  std::unique_ptr<Player> player_paddle_1{ new Player(100, 300, 10, 300, game_window->m_game_renderer)};
+  std::unique_ptr<Player> player_paddle_1 { new Player(100, 300, 10, 300, game_window->m_game_renderer)};
   printf("player_paddle_1 address: %p \n", &player_paddle_1);  
-  // std::unique_ptr<Sprite> player_paddle_1{ new Sprite(100, 300, 10, 300, game_window->m_game_renderer)};
-  std::unique_ptr<Sprite> player_paddle_2{ new Sprite(1500, 300, 10, 300, game_window->m_game_renderer)};
+  std::unique_ptr<Player> player_paddle_2 { new Player(1500, 300, 10 ,300, game_window->m_game_renderer)};
   printf("player_paddle_2 address: %p \n", &player_paddle_2);  
-
   while (!finished_running) {
     SDL_Event event;
 
@@ -39,8 +36,8 @@ int main (int, char **) {
     // Divider 
     background_divider->drawDividerOnScreen();
     // Player sprites
-  player_paddle_1->colorSprite();
-    player_paddle_2->colorSprite(); 
+    player_paddle_1->colorSprite();
+    player_paddle_2->colorSprite();
     SDL_RenderPresent(game_window->m_game_renderer); 
   }
   return 0;
