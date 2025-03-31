@@ -31,12 +31,26 @@ int main (int, char **) {
         case SDL_EVENT_QUIT:
           finished_running = true;
         break;
+        
         // Exit the game with a button press.
         case SDL_EVENT_KEY_DOWN:
           switch (event.key.key) {
+            // Escape key
             case SDLK_ESCAPE:
               finished_running = true;
               printf("Escape key has been pressed! \n");
+              break;
+            case SDLK_W:
+              printf("W pressed! \n");
+              break;
+            case SDLK_S:
+              printf("S Pressed! \n");
+              break;
+            case SDLK_I:
+              printf("I Pressed! \n");
+              break;
+            case SDLK_K:
+              printf("K Pressed! \n");
               break;
           }
       }
