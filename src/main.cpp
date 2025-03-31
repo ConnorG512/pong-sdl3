@@ -1,6 +1,8 @@
+#include <SDL3/SDL_events.h>
 #include <SDL3/SDL_timer.h>
 #include <cstdio>
 #include <memory>
+#include <SDL3/SDL_keycode.h>
 
 #include "game_window.h"
 #include "player.h"
@@ -24,12 +26,24 @@ int main (int, char **) {
     SDL_Event event;
 
     while (SDL_PollEvent(&event)) {
-      if (event.type == SDL_EVENT_QUIT) {
-        finished_running = true;  
+      // Exit by hitting the close button on window.
+      switch (event.type) {
+        case SDL_EVENT_QUIT:
+          finished_running = true;
+        break;
+        // Exit the game with a button press.
+        case SDL_EVENT_KEY_DOWN:
+          switch (event.key.key) {
+            case SDLK_ESCAPE:
+              finished_running = true;
+              printf("Escape key has been pressed! \n");
+              break;
+          }
       }
     } 
     // Game logic here: 
     SDL_Delay(16);
+
     // Background colour
     SDL_SetRenderDrawColor(game_window->m_game_renderer, 0, 0, 0, 255);
     SDL_RenderClear(game_window->m_game_renderer);
