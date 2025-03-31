@@ -17,9 +17,9 @@ int main (int, char **) {
   // Divider 
   std::unique_ptr<Divider> background_divider{ new Divider(game_window->m_game_renderer)};
   // Sprite creation
-  std::unique_ptr<Sprite> player_paddle_1{ new Sprite(100, 300, 10, 300, 255, 255, 255, 255, game_window->m_game_renderer)};
+  std::unique_ptr<Sprite> player_paddle_1{ new Sprite(100, 300, 10, 300, game_window->m_game_renderer)};
   printf("player_paddle_1 address: %p \n", &player_paddle_1);  
-  std::unique_ptr<Sprite> player_paddle_2{ new Sprite(1500, 300, 10, 300, 255, 255, 255, 255, game_window->m_game_renderer)};
+  std::unique_ptr<Sprite> player_paddle_2{ new Sprite(1500, 300, 10, 300, game_window->m_game_renderer)};
   printf("player_paddle_2 address: %p \n", &player_paddle_2);  
 
   while (!finished_running) {
