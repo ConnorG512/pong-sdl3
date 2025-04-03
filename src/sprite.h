@@ -18,6 +18,7 @@ class Sprite {
   public:
 
   void moveSpriteYPos(const float* p_movement_speed);
+  void moveSpriteYNeg(const float* p_movement_speed);
   void colorSprite();
 
   // CONSTRUCTOR

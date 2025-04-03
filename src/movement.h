@@ -17,6 +17,7 @@ class Movement {
     void applyMovementXPos();
     void applyMovementXNeg();
     const float* GetYPosMovementSpeed();
+    const float* GetYNegMovementSpeed();
 };
 
 #endif 

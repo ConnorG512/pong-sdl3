@@ -28,28 +28,24 @@ int main (int, char **) {
         // Cross button hit on window.
         case SDL_EVENT_QUIT:
           finished_running = true;
-        break;
-        
+        // break;
         // Keyboard controls
         case SDL_EVENT_KEY_DOWN:
           switch (event.key.key) {
             case SDLK_ESCAPE:
               finished_running = true;
-              printf("Escape key has been pressed! \n");
               break;
             case SDLK_W:
-              printf("W pressed! \n");
               player_paddle_1->moveYPos();
               break;
             case SDLK_S:
-              printf("S Pressed! \n");
+              player_paddle_1->moveYNeg();
               break;
             case SDLK_I:
-              printf("I Pressed! \n");
               player_paddle_2->moveYPos();
               break;
             case SDLK_K:
-              printf("K Pressed! \n");
+              player_paddle_2->moveYNeg();
               break;
           }
       }

@@ -7,3 +7,6 @@ Movement::Movement(const float move_speed_y_pos, const float move_speed_y_neg, c
 const float* Movement::GetYPosMovementSpeed() {
   return &m_movement_speed_y_pos;
 }
+const float* Movement::GetYNegMovementSpeed() {
+  return &m_movement_speed_y_neg;
+}
