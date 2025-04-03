@@ -6,27 +6,23 @@
 
 class Sprite {
   private:
-  float m_pos_x; 
-  float m_pos_y;
-  float m_size_x;
-  float m_size_y;
+  SDL_FRect m_sprite;
   int m_color_r = 255;
   int m_color_g = 255;
   int m_color_b = 255;
   int m_color_a = 255;
-  SDL_FRect m_sprite;
   SDL_Renderer* m_renderer;
   
   // Methods
   void createRectangle();
   public:
 
+  void moveSpriteYPos(const float* p_movement_speed);
   void colorSprite();
+
   // CONSTRUCTOR
   // Colors will default to bright white
-  Sprite(float pos_x, float pos_y, float size_x, float size_y, SDL_Renderer* renderer);
-  // To specify the color on contruction
-  Sprite(float pos_x, float pos_y, float size_x, float size_y, int color_r, int color_g, int color_b, int color_a, SDL_Renderer* renderer);
+  Sprite(float position_x, float position_y, float size_x, float size_y, SDL_Renderer* renderer);
 };
 
 #endif // SPRITE_H

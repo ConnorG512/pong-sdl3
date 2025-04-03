@@ -3,6 +3,8 @@
 
 #include "sprite.h"
 #include "score.h"
+#include "movement.h"
+
 #include <SDL3/SDL_render.h>
 
 class Player{
@@ -10,8 +12,15 @@ class Player{
     Sprite m_sprite;
     Score m_score;
   public:
-    Player(int pos_x, int pos_y, const int size_x, const int size_y, SDL_Renderer* renderer);
+    Movement m_movement;
+    Player(float position_x, float position_y, float size_x, float size_y, SDL_Renderer* renderer); 
+    // SPRITE
     void colorSprite();
+    // MOVEMENT 
+    void moveYPos();
+    void moveYNeg();
+    void MoveXPos();
+    void MoveXNeg();
 };
 
 #endif

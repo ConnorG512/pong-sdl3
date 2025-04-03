@@ -17,15 +17,12 @@ int main (int, char **) {
   std::unique_ptr<Divider> background_divider{ new Divider(game_window->m_game_renderer)};
   // Player creation
   std::unique_ptr<Player> player_paddle_1 { new Player(100, 300, 10, 300, game_window->m_game_renderer)};
-  std::unique_ptr<Player> player_paddle_2 { new Player(1500, 300, 10 ,300, game_window->m_game_renderer)};
+  std::unique_ptr<Player> player_paddle_2 { new Player(1500, 600, 10 ,300, game_window->m_game_renderer)};
 
-  printf("game_window address: %p \n", &game_window);  
-  printf("player_paddle_1 address: %p \n", &player_paddle_1);  
-  printf("player_paddle_2 address: %p \n", &player_paddle_2);  
-  while (!finished_running) {
+  while (!finished_running) {  
     SDL_Event event;
-
-    while (SDL_PollEvent(&event)) {
+    while (SDL_PollEvent(&event)) {  
+      
       // Exit by hitting the close button on window.
       switch (event.type) {
         // Cross button hit on window.
@@ -42,6 +39,7 @@ int main (int, char **) {
               break;
             case SDLK_W:
               printf("W pressed! \n");
+              player_paddle_1->moveYPos();
               break;
             case SDLK_S:
               printf("S Pressed! \n");
@@ -54,19 +52,20 @@ int main (int, char **) {
               break;
           }
       }
+      // Game logic here: 
+        SDL_Delay(16);
+        // Background colour
+        SDL_SetRenderDrawColor(game_window->m_game_renderer, 0, 0, 0, 255);
+        // Clear the backbuffer
+        SDL_RenderClear(game_window->m_game_renderer);
+        // Divider 
+        background_divider->drawDividerOnScreen();
+        // Player sprites
+        player_paddle_1->colorSprite();
+        player_paddle_2->colorSprite();
+        // Present backbuffer
+        SDL_RenderPresent(game_window->m_game_renderer); 
     } 
-    // Game logic here: 
-    SDL_Delay(16);
-
-    // Background colour
-    SDL_SetRenderDrawColor(game_window->m_game_renderer, 0, 0, 0, 255);
-    SDL_RenderClear(game_window->m_game_renderer);
-    // Divider 
-    background_divider->drawDividerOnScreen();
-    // Player sprites
-    player_paddle_1->colorSprite();
-    player_paddle_2->colorSprite();
-    SDL_RenderPresent(game_window->m_game_renderer); 
   }
   return 0;
 }

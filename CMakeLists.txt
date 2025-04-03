@@ -28,6 +28,8 @@ add_executable(${PROJECT_NAME}
   src/sprite.cpp
   src/divider.h 
   src/divider.cpp
+  src/movement.h 
+  src/movement.cpp 
 )
 
 # External libraries
