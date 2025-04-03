@@ -17,7 +17,7 @@ int main (int, char **) {
   std::unique_ptr<Divider> background_divider{ new Divider(game_window->m_game_renderer)};
   // Player creation
   std::unique_ptr<Player> player_paddle_1 { new Player(100, 300, 10, 300, game_window->m_game_renderer)};
-  std::unique_ptr<Player> player_paddle_2 { new Player(1500, 600, 10 ,300, game_window->m_game_renderer)};
+  std::unique_ptr<Player> player_paddle_2 { new Player(1500, 300, 10 ,300, game_window->m_game_renderer)};
 
   while (!finished_running) {  
     SDL_Event event;
@@ -46,6 +46,7 @@ int main (int, char **) {
               break;
             case SDLK_I:
               printf("I Pressed! \n");
+              player_paddle_2->moveYPos();
               break;
             case SDLK_K:
               printf("K Pressed! \n");

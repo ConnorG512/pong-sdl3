@@ -11,6 +11,6 @@ void Sprite::colorSprite() {
   SDL_RenderFillRect(m_renderer, &m_sprite);
 }
 void Sprite::moveSpriteYPos(const float* p_movement_speed) {
-  m_sprite.y += *p_movement_speed;
+  m_sprite.y -= *p_movement_speed;
   printf("Y position: %f\n", m_sprite.y);
 }
