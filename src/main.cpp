@@ -1,8 +1,10 @@
 #include <SDL3/SDL_events.h>
+#include <SDL3/SDL_scancode.h>
 #include <SDL3/SDL_timer.h>
 #include <cstdio>
 #include <memory>
 #include <SDL3/SDL_keycode.h>
+#include <SDL3/SDL_keyboard.h>
 
 #include "game_window.h"
 #include "player.h"
@@ -18,36 +20,29 @@ int main (int, char **) {
   // Player creation
   std::unique_ptr<Player> player_paddle_1 { new Player(100, 300, 10, 300, game_window->m_game_renderer)};
   std::unique_ptr<Player> player_paddle_2 { new Player(1500, 300, 10 ,300, game_window->m_game_renderer)};
+  
+  // Get SDL Keyboard state
+  const bool* keyboard_state = SDL_GetKeyboardState(nullptr);
 
   while (!finished_running) {  
+
     SDL_Event event;
     while (SDL_PollEvent(&event)) {  
-      
-      // Exit by hitting the close button on window.
-      switch (event.type) {
-        // Cross button hit on window.
-        case SDL_EVENT_QUIT:
-          finished_running = true;
-        // break;
-        // Keyboard controls
-        case SDL_EVENT_KEY_DOWN:
-          switch (event.key.key) {
-            case SDLK_ESCAPE:
-              finished_running = true;
-              break;
-            case SDLK_W:
-              player_paddle_1->moveYPos();
-              break;
-            case SDLK_S:
-              player_paddle_1->moveYNeg();
-              break;
-            case SDLK_I:
-              player_paddle_2->moveYPos();
-              break;
-            case SDLK_K:
-              player_paddle_2->moveYNeg();
-              break;
-          }
+      // Player control
+      if ( keyboard_state [SDL_SCANCODE_W]) {
+        player_paddle_1->moveYPos();
+      }
+      if (keyboard_state [SDL_SCANCODE_S]) {
+        player_paddle_1->moveYNeg();
+      }
+      if (keyboard_state [SDL_SCANCODE_I]) {
+        player_paddle_2->moveYPos();
+      }
+      if (keyboard_state [SDL_SCANCODE_K]) {
+        player_paddle_2->moveYNeg();
+      }
+      if (keyboard_state [SDL_SCANCODE_ESCAPE]) {
+        finished_running = false; 
       }
       // Game logic here: 
         SDL_Delay(16);

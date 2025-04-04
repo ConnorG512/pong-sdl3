@@ -1,5 +1,6 @@
 #include "game_window.h"
 #include <SDL3/SDL_render.h>
+#include <SDL3/SDL_video.h>
 #include "sdl_error_util.h"
 
 // Public
@@ -24,7 +25,7 @@ int GameWindow::GetWindowSizeY() {
 
 // Private
 void GameWindow::createWindow() {
-  m_game_window = SDL_CreateWindow(m_window_title.c_str(), m_window_size_x, m_window_size_y, 0);
+  m_game_window = SDL_CreateWindow(m_window_title.c_str(), m_window_size_x, m_window_size_y, SDL_WINDOW_KEYBOARD_GRABBED);
   SDLError::SDLPrintError(m_game_window, "src/game_window.cpp");
 }
 void GameWindow::createRenderer() {
