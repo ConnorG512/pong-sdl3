@@ -1,6 +1,9 @@
 #include <SDL3/SDL_events.h>
+#include <SDL3/SDL_init.h>
+#include <SDL3/SDL_render.h>
 #include <SDL3/SDL_scancode.h>
 #include <SDL3/SDL_timer.h>
+#include <SDL3/SDL_video.h>
 #include <cstdio>
 #include <memory>
 #include <SDL3/SDL_keycode.h>
@@ -42,7 +45,7 @@ int main (int, char **) {
         player_paddle_2->moveYNeg();
       }
       if (keyboard_state [SDL_SCANCODE_ESCAPE]) {
-        finished_running = false; 
+        finished_running = true; 
       }
       // Game logic here: 
         SDL_Delay(16);
@@ -59,5 +62,8 @@ int main (int, char **) {
         SDL_RenderPresent(game_window->m_game_renderer); 
     } 
   }
+  SDL_DestroyRenderer(game_window->m_game_renderer);
+  SDL_DestroyWindow(game_window->m_game_window);
+  SDL_Quit();
   return 0;
 }
