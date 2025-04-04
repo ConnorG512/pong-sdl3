@@ -28,39 +28,44 @@ int main (int, char **) {
   const bool* keyboard_state = SDL_GetKeyboardState(nullptr);
 
   while (!finished_running) {  
-
     SDL_Event event;
+
+    SDL_Delay(16);
+    // Background colour
+    SDL_SetRenderDrawColor(game_window->m_game_renderer, 0, 0, 0, 255);
+
     while (SDL_PollEvent(&event)) {  
-      // Player control
-      if ( keyboard_state [SDL_SCANCODE_W]) {
-        player_paddle_1->moveYPos();
-      }
-      if (keyboard_state [SDL_SCANCODE_S]) {
-        player_paddle_1->moveYNeg();
-      }
-      if (keyboard_state [SDL_SCANCODE_I]) {
-        player_paddle_2->moveYPos();
-      }
-      if (keyboard_state [SDL_SCANCODE_K]) {
-        player_paddle_2->moveYNeg();
-      }
-      if (keyboard_state [SDL_SCANCODE_ESCAPE]) {
-        finished_running = true; 
-      }
-      // Game logic here: 
-        SDL_Delay(16);
-        // Background colour
-        SDL_SetRenderDrawColor(game_window->m_game_renderer, 0, 0, 0, 255);
-        // Clear the backbuffer
-        SDL_RenderClear(game_window->m_game_renderer);
-        // Divider 
-        background_divider->drawDividerOnScreen();
-        // Player sprites
-        player_paddle_1->colorSprite();
-        player_paddle_2->colorSprite();
-        // Present backbuffer
-        SDL_RenderPresent(game_window->m_game_renderer); 
     } 
+
+    // Clear the backbuffer
+    SDL_RenderClear(game_window->m_game_renderer);
+    // Divider 
+    background_divider->drawDividerOnScreen();
+    // Player sprites
+    player_paddle_1->colorSprite();
+    player_paddle_2->colorSprite();
+
+    // GAME LOGIC    
+    // Player control
+    if ( keyboard_state [SDL_SCANCODE_W]) {
+      player_paddle_1->moveYPos();
+    }
+    if (keyboard_state [SDL_SCANCODE_S]) {
+      player_paddle_1->moveYNeg();
+    }
+    if (keyboard_state [SDL_SCANCODE_I]) {
+      player_paddle_2->moveYPos();
+    }
+    if (keyboard_state [SDL_SCANCODE_K]) {
+      player_paddle_2->moveYNeg();
+    }
+    if (keyboard_state [SDL_SCANCODE_ESCAPE]) {
+      finished_running = true; 
+    }
+
+    // Game logic here: 
+      // Present backbuffer
+      SDL_RenderPresent(game_window->m_game_renderer); 
   }
   return 0;
 }
