@@ -14,6 +14,7 @@ GameWindow::GameWindow(const std::string& window_title)
 // DESTRUCTOR
 GameWindow::~GameWindow() {
   SDL_DestroyWindow(m_game_window);
+  SDL_DestroyRenderer(m_game_renderer);
   SDL_Quit();
 }
 int GameWindow::GetWindowSizeX() {

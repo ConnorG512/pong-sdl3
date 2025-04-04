@@ -62,8 +62,5 @@ int main (int, char **) {
         SDL_RenderPresent(game_window->m_game_renderer); 
     } 
   }
-  SDL_DestroyRenderer(game_window->m_game_renderer);
-  SDL_DestroyWindow(game_window->m_game_window);
-  SDL_Quit();
   return 0;
 }
