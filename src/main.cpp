@@ -4,7 +4,6 @@
 #include <SDL3/SDL_scancode.h>
 #include <SDL3/SDL_timer.h>
 #include <SDL3/SDL_video.h>
-#include <algorithm>
 #include <cstdio>
 #include <memory>
 #include <SDL3/SDL_keycode.h>
@@ -26,7 +25,7 @@ int main (int, char **) {
   std::unique_ptr<Player> player_paddle_1 { new Player(100, 300, 10, 300, game_window->m_game_renderer)};
   std::unique_ptr<Player> player_paddle_2 { new Player(1500, 300, 10 ,300, game_window->m_game_renderer)};
   // Ball creation 
-  std::unique_ptr<Ball> ball { new Ball(800, 450, 24, 24, game_window->m_game_renderer)};
+  std::unique_ptr<Ball> ball { new Ball(800-12, 450-12, 24, 24, game_window->m_game_renderer)};
 
   // Get SDL Keyboard state
   const bool* keyboard_state = SDL_GetKeyboardState(nullptr);
