@@ -19,8 +19,6 @@ class Player{
     // MOVEMENT 
     void moveYPos();
     void moveYNeg();
-    void MoveXPos();
-    void MoveXNeg();
 };
 
 #endif

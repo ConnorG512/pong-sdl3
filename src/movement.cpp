@@ -10,3 +10,9 @@ const float* Movement::GetYPosMovementSpeed() {
 const float* Movement::GetYNegMovementSpeed() {
   return &m_movement_speed_y_neg;
 }
+const float* Movement::GetXPosMovementSpeed(){
+  return &m_movement_speed_x_pos;
+}
+const float* Movement::GetXNegMovementSpeed(){
+  return &m_movement_speed_x_neg;
+}

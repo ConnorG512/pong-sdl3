@@ -4,6 +4,7 @@
 #include <SDL3/SDL_scancode.h>
 #include <SDL3/SDL_timer.h>
 #include <SDL3/SDL_video.h>
+#include <algorithm>
 #include <cstdio>
 #include <memory>
 #include <SDL3/SDL_keycode.h>
@@ -13,6 +14,7 @@
 #include "player.h"
 #include "sdl_error_util.h"
 #include "divider.h"
+#include "ball.h"
 
 int main (int, char **) {
   bool finished_running { false };
@@ -23,7 +25,9 @@ int main (int, char **) {
   // Player creation
   std::unique_ptr<Player> player_paddle_1 { new Player(100, 300, 10, 300, game_window->m_game_renderer)};
   std::unique_ptr<Player> player_paddle_2 { new Player(1500, 300, 10 ,300, game_window->m_game_renderer)};
-  
+  // Ball creation 
+  std::unique_ptr<Ball> ball { new Ball(800, 450, 24, 24, game_window->m_game_renderer)};
+
   // Get SDL Keyboard state
   const bool* keyboard_state = SDL_GetKeyboardState(nullptr);
 
@@ -33,7 +37,6 @@ int main (int, char **) {
     SDL_Delay(16);
     // Background colour
     SDL_SetRenderDrawColor(game_window->m_game_renderer, 0, 0, 0, 255);
-
     while (SDL_PollEvent(&event)) {  
     } 
 
@@ -44,7 +47,7 @@ int main (int, char **) {
     // Player sprites
     player_paddle_1->colorSprite();
     player_paddle_2->colorSprite();
-
+    ball->drawSpriteOnScreen();
     // GAME LOGIC    
     // Player control
     if ( keyboard_state [SDL_SCANCODE_W]) {

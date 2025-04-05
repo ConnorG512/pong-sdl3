@@ -13,11 +13,10 @@ class Movement {
   public:
     // Constructor
     Movement(const float move_speed_y_pos, const float move_speed_y_neg, const float move_speed_x_pos, const float move_speed_x_neg);
-    void applyMovementYNeg();
-    void applyMovementXPos();
-    void applyMovementXNeg();
     const float* GetYPosMovementSpeed();
     const float* GetYNegMovementSpeed();
+    const float* GetXPosMovementSpeed();
+    const float* GetXNegMovementSpeed();
 };
 
 #endif 
