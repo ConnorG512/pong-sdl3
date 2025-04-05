@@ -24,7 +24,6 @@ void Ball::moveXNeg() {
 }
 void Ball::startInitialMovement(const int& player_one_score, const int& player_two_score) {
   if (player_one_score == player_two_score) {
-    // TODO 
     // Generate a random number from 0-1
     const int random_number = rand() % 2;
 

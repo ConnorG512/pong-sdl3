@@ -14,6 +14,7 @@
 #include "sdl_error_util.h"
 #include "divider.h"
 #include "ball.h"
+#include "gamestate.h"
 
 int main (int, char **) {
   bool finished_running { false };
@@ -49,24 +50,38 @@ int main (int, char **) {
     
     // Ball logic
     ball->drawSpriteOnScreen();
-    ball->startInitialMovement(player_paddle_1->getPlayerScore(), player_paddle_2->getPlayerScore());
-    // GAME LOGIC    
-    // Player control
-    if ( keyboard_state [SDL_SCANCODE_W]) {
-      player_paddle_1->moveYPos();
-    }
-    if (keyboard_state [SDL_SCANCODE_S]) {
-      player_paddle_1->moveYNeg();
-    }
-    if (keyboard_state [SDL_SCANCODE_I]) {
-      player_paddle_2->moveYPos();
-    }
-    if (keyboard_state [SDL_SCANCODE_K]) {
-      player_paddle_2->moveYNeg();
-    }
+    
+    // Exit the game with escape.
     if (keyboard_state [SDL_SCANCODE_ESCAPE]) {
       finished_running = true; 
     }
+    // GAME LOGIC
+    // Start on the kickoff gamestate
+    GameState current_gamestate = GameState::kickoff;
+    switch (current_gamestate) {
+      case GameState::kickoff:
+        ball->startInitialMovement(player_paddle_1->getPlayerScore(), player_paddle_2->getPlayerScore());
+        current_gamestate = GameState::ingame;
+        break;
+      case GameState::ingame:
+        // Player control
+        if ( keyboard_state [SDL_SCANCODE_W]) {
+          player_paddle_1->moveYPos();
+        }
+        if (keyboard_state [SDL_SCANCODE_S]) {
+          player_paddle_1->moveYNeg();
+        }
+        if (keyboard_state [SDL_SCANCODE_I]) {
+          player_paddle_2->moveYPos();
+        }
+        if (keyboard_state [SDL_SCANCODE_K]) {
+          player_paddle_2->moveYNeg();
+        }
+        break;
+      case GameState::finished:
+        printf("Finished!");
+        break;
+    };
 
     // Game logic here: 
       // Present backbuffer

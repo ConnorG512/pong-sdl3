@@ -30,6 +30,7 @@ add_executable(${PROJECT_NAME}
   src/divider.cpp
   src/movement.h 
   src/movement.cpp 
+  src/gamestate.h
 )
 
 # External libraries
