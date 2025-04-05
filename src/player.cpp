@@ -15,3 +15,6 @@ void Player::moveYPos() {
 void Player::moveYNeg() {
   m_sprite.moveSpriteYNeg(m_movement.GetYNegMovementSpeed());
 }
+int& Player::getPlayerScore() {
+  return m_score.m_current_score;
+}

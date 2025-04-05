@@ -49,7 +49,7 @@ int main (int, char **) {
     
     // Ball logic
     ball->drawSpriteOnScreen();
-    ball->moveXPos();
+    ball->startInitialMovement(player_paddle_1->getPlayerScore(), player_paddle_2->getPlayerScore());
     // GAME LOGIC    
     // Player control
     if ( keyboard_state [SDL_SCANCODE_W]) {

@@ -1,8 +1,7 @@
 #ifndef SCORE_H
 #define SCORE_H
 
-class Score{
-  private:
+struct Score{
     int m_current_score { 0 };
     const int m_maximum_score { 5 };
 

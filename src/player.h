@@ -19,6 +19,8 @@ class Player{
     // MOVEMENT 
     void moveYPos();
     void moveYNeg();
+    // SCORE 
+    int& getPlayerScore();
 };
 
 #endif
