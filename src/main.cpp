@@ -57,12 +57,14 @@ int main (int, char **) {
     }
     // GAME LOGIC
     // Start on the kickoff gamestate
-    GameState current_gamestate = GameState::kickoff;
+    static GameState current_gamestate = GameState::kickoff;
     switch (current_gamestate) {
+
       case GameState::kickoff:
         ball->startInitialMovement(player_paddle_1->getPlayerScore(), player_paddle_2->getPlayerScore());
         current_gamestate = GameState::ingame;
         break;
+
       case GameState::ingame:
         // Player control
         if ( keyboard_state [SDL_SCANCODE_W]) {
@@ -77,7 +79,9 @@ int main (int, char **) {
         if (keyboard_state [SDL_SCANCODE_K]) {
           player_paddle_2->moveYNeg();
         }
+        ball->moveXPos();
         break;
+
       case GameState::finished:
         printf("Finished!");
         break;
