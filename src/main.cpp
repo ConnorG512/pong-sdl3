@@ -46,7 +46,10 @@ int main (int, char **) {
     // Player sprites
     player_paddle_1->colorSprite();
     player_paddle_2->colorSprite();
+    
+    // Ball logic
     ball->drawSpriteOnScreen();
+    ball->moveXPos();
     // GAME LOGIC    
     // Player control
     if ( keyboard_state [SDL_SCANCODE_W]) {
