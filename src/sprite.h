@@ -17,10 +17,10 @@ class Sprite {
   void createRectangle();
   public:
 
-  void moveSpriteYPos(const float* p_movement_speed);
-  void moveSpriteYNeg(const float* p_movement_speed);
-  void moveSpriteXPos(const float* p_movement_speed);
-  void moveSpriteXNeg(const float* p_movement_speed);
+  void moveSpriteYPos(const float& p_movement_speed);
+  void moveSpriteYNeg(const float& p_movement_speed);
+  void moveSpriteXPos(const float& p_movement_speed);
+  void moveSpriteXNeg(const float& p_movement_speed);
   void colorSprite();
 
   // CONSTRUCTOR

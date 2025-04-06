@@ -79,7 +79,7 @@ int main (int, char **) {
         if (keyboard_state [SDL_SCANCODE_K]) {
           player_paddle_2->moveYNeg();
         }
-        ball->moveXPos();
+        ball->moveBall();
         break;
 
       case GameState::finished:

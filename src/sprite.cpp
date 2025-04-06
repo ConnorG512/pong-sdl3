@@ -10,15 +10,15 @@ void Sprite::colorSprite() {
   SDL_SetRenderDrawColor(m_renderer,m_color_r, m_color_g, m_color_b, m_color_a);
   SDL_RenderFillRect(m_renderer, &m_sprite);
 }
-void Sprite::moveSpriteYPos(const float* p_movement_speed) {
-  m_sprite.y -= *p_movement_speed;
+void Sprite::moveSpriteYPos(const float& p_movement_speed) {
+  m_sprite.y -= p_movement_speed;
 }
-void Sprite::moveSpriteYNeg(const float* p_movement_speed) {
-  m_sprite.y += *p_movement_speed;
+void Sprite::moveSpriteYNeg(const float& p_movement_speed) {
+  m_sprite.y += p_movement_speed;
 }
-void Sprite::moveSpriteXPos(const float* p_movement_speed) {
-  m_sprite.x += *p_movement_speed;
+void Sprite::moveSpriteXPos(const float& p_movement_speed) {
+  m_sprite.x += p_movement_speed;
 }
-void Sprite::moveSpriteXNeg(const float* p_movement_speed) {
-  m_sprite.x -= *p_movement_speed;
+void Sprite::moveSpriteXNeg(const float& p_movement_speed) {
+  m_sprite.x -= p_movement_speed;
 }

@@ -10,17 +10,36 @@ Ball::Ball(float position_x, float position_y, float size_x, float size_y, SDL_R
 void Ball::drawSpriteOnScreen() {
   m_sprite.colorSprite();
 }
-void Ball::moveYPos() {
-  m_sprite.moveSpriteYPos(m_movement.GetYPosMovementSpeed());
-}
-void Ball::moveYNeg() {
-  m_sprite.moveSpriteYNeg(m_movement.GetYNegMovementSpeed());
-}
-void Ball::moveXPos() {
-  m_sprite.moveSpriteXPos(m_movement.GetXPosMovementSpeed());
-}
-void Ball::moveXNeg() {
-  m_sprite.moveSpriteXNeg(m_movement.GetXNegMovementSpeed());
+void Ball::moveBall() {
+ switch (m_current_ball_direction) {
+   case BallDirection::north:
+    m_sprite.moveSpriteYPos(m_movement.m_movement_speed_y_pos);
+   
+   case BallDirection::northeast:
+    m_sprite.moveSpriteYPos(m_movement.m_movement_speed_y_pos);
+    m_sprite.moveSpriteXPos(m_movement.m_movement_speed_x_pos);
+   
+   case BallDirection::east:
+    m_sprite.moveSpriteXPos(m_movement.m_movement_speed_x_pos);
+   
+   case BallDirection::southeast:
+    m_sprite.moveSpriteYNeg(m_movement.m_movement_speed_y_neg);
+    m_sprite.moveSpriteXPos(m_movement.m_movement_speed_x_pos);
+   
+   case BallDirection::south:
+    m_sprite.moveSpriteYNeg(m_movement.m_movement_speed_y_neg);
+   
+   case BallDirection::southwest:
+    m_sprite.moveSpriteYNeg(m_movement.m_movement_speed_y_neg);
+    m_sprite.moveSpriteXNeg(m_movement.m_movement_speed_x_neg);
+   
+   case BallDirection::west:
+    m_sprite.moveSpriteXNeg(m_movement.m_movement_speed_x_neg);
+   
+   case BallDirection::northwest:
+    m_sprite.moveSpriteYPos(m_movement.m_movement_speed_y_pos);
+    m_sprite.moveSpriteXNeg(m_movement.m_movement_speed_x_neg);
+ } 
 }
 void Ball::startInitialMovement(const int& player_one_score, const int& player_two_score) {
   if (player_one_score == player_two_score) {
@@ -28,16 +47,16 @@ void Ball::startInitialMovement(const int& player_one_score, const int& player_t
     const int random_number = rand() % 2;
 
     if (random_number == 0) {
-    m_sprite.moveSpriteXNeg(m_movement.GetXNegMovementSpeed());
+    m_current_ball_direction = BallDirection::east;
     }
     else if (random_number == 1) {
-    m_sprite.moveSpriteXPos(m_movement.GetXPosMovementSpeed());
+    m_current_ball_direction = BallDirection::west;
     }
   } 
   else if (player_one_score >= player_two_score) {
-    m_sprite.moveSpriteXNeg(m_movement.GetXNegMovementSpeed());
+    m_current_ball_direction = BallDirection::east;
   }
   else if (player_one_score <= player_two_score) {
-    m_sprite.moveSpriteXPos(m_movement.GetXPosMovementSpeed());
+    m_current_ball_direction = BallDirection::west;
   }
 }

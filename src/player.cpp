@@ -10,10 +10,10 @@ void Player::colorSprite() {
   m_sprite.colorSprite();
 }
 void Player::moveYPos() {
-  m_sprite.moveSpriteYPos(m_movement.GetYPosMovementSpeed());
+  m_sprite.moveSpriteYPos(m_movement.m_movement_speed_y_pos);
 }
 void Player::moveYNeg() {
-  m_sprite.moveSpriteYNeg(m_movement.GetYNegMovementSpeed());
+  m_sprite.moveSpriteYNeg(m_movement.m_movement_speed_y_neg);
 }
 int& Player::getPlayerScore() {
   return m_score.m_current_score;
