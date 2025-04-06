@@ -22,6 +22,9 @@ class Sprite {
   void moveSpriteXPos(const float& p_movement_speed);
   void moveSpriteXNeg(const float& p_movement_speed);
   void colorSprite();
+  void setSpritePosition(const int x_position, const int y_position);
+  float& getSpritePositionX();
+  float& getSpritePositionY();
 
   // CONSTRUCTOR
   // Colors will default to bright white

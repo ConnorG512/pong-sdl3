@@ -31,6 +31,10 @@ add_executable(${PROJECT_NAME}
   src/movement.h 
   src/movement.cpp 
   src/gamestate.h
+  src/collision.h
+  src/collision.cpp
+  src/score.h 
+  src/score.cpp
 )
 
 # External libraries

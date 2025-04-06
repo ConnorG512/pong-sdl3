@@ -13,8 +13,8 @@
 #include "player.h"
 #include "sdl_error_util.h"
 #include "divider.h"
-#include "ball.h"
 #include "gamestate.h"
+#include "ball.h"
 
 int main (int, char **) {
   bool finished_running { false };
@@ -61,7 +61,7 @@ int main (int, char **) {
     switch (current_gamestate) {
 
       case GameState::kickoff:
-        ball->startInitialMovement(player_paddle_1->getPlayerScore(), player_paddle_2->getPlayerScore());
+        ball->startInitialMovement(player_paddle_1->GetPlayerScore(), player_paddle_2->GetPlayerScore());
         current_gamestate = GameState::ingame;
         break;
 
@@ -80,6 +80,7 @@ int main (int, char **) {
           player_paddle_2->moveYNeg();
         }
         ball->moveBall();
+
         break;
 
       case GameState::finished:

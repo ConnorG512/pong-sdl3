@@ -20,7 +20,9 @@ class Player{
     void moveYPos();
     void moveYNeg();
     // SCORE 
-    int& getPlayerScore();
+    void addToPlayerScore(const int score_to_remove);
+    void removeFromPlayerScore(const int score_to_remove);
+    const int& GetPlayerScore();
 };
 
 #endif

@@ -1,6 +1,7 @@
 #include "sprite.h"
 #include <SDL3/SDL_render.h>
 #include <cstdio>
+#include <system_error>
 
 // CONSTRUCTOR
 Sprite::Sprite(float position_x, float position_y, float size_x, float size_y, SDL_Renderer* renderer) 
@@ -21,4 +22,14 @@ void Sprite::moveSpriteXPos(const float& p_movement_speed) {
 }
 void Sprite::moveSpriteXNeg(const float& p_movement_speed) {
   m_sprite.x -= p_movement_speed;
+}
+void Sprite::setSpritePosition(const int x_position, const int y_position) {
+  m_sprite.x = x_position;
+  m_sprite.y = y_position;
+}
+float& Sprite::getSpritePositionX() {
+  return m_sprite.x; 
+}
+float& Sprite::getSpritePositionY() {
+  return m_sprite.y;
 }

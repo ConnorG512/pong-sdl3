@@ -7,6 +7,9 @@ Ball::Ball(float position_x, float position_y, float size_x, float size_y, SDL_R
   : m_sprite (position_x, position_y, size_x, size_y, renderer)
   , m_movement(4, 4 ,4 ,4) {
 }
+Sprite& Ball::getSprite() {
+  return m_sprite;
+}
 void Ball::drawSpriteOnScreen() {
   m_sprite.colorSprite();
 }
@@ -41,6 +44,9 @@ void Ball::moveBall() {
     m_sprite.moveSpriteXNeg(m_movement.m_movement_speed_x_neg);
     break;
  } 
+}
+void Ball::recentreBall() {
+  m_sprite.setSpritePosition(800-12, 450-12);
 }
 void Ball::startInitialMovement(const int& player_one_score, const int& player_two_score) {
   if (player_one_score == player_two_score) {

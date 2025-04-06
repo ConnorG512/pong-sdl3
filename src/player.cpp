@@ -15,6 +15,12 @@ void Player::moveYPos() {
 void Player::moveYNeg() {
   m_sprite.moveSpriteYNeg(m_movement.m_movement_speed_y_neg);
 }
-int& Player::getPlayerScore() {
-  return m_score.m_current_score;
+void Player::addToPlayerScore(const int score_to_add) {
+  m_score.increaseScore(score_to_add);
+}
+void Player::removeFromPlayerScore(const int score_to_remove) {
+  m_score.reduceScore(score_to_remove);
+}
+const int& Player::GetPlayerScore() {
+  return m_score.getCurrentScore();
 }
