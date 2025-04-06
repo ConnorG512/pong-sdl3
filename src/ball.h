@@ -30,7 +30,6 @@ class Ball {
     // Draw the sprite on screen based on the constructor parameters.
     void drawSpriteOnScreen();
     void moveBall();
-    
     // Move toward the specific player depending on which one has the least score
     // The lower score player will have priority over the ball coming towards them.
     // If both players have equal score, then the balls direction of choice will be random.

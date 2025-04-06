@@ -14,31 +14,39 @@ void Ball::moveBall() {
  switch (m_current_ball_direction) {
    case BallDirection::north:
     m_sprite.moveSpriteYPos(m_movement.m_movement_speed_y_pos);
-   
+    break;
+
    case BallDirection::northeast:
     m_sprite.moveSpriteYPos(m_movement.m_movement_speed_y_pos);
     m_sprite.moveSpriteXPos(m_movement.m_movement_speed_x_pos);
-   
+    break;
+
    case BallDirection::east:
     m_sprite.moveSpriteXPos(m_movement.m_movement_speed_x_pos);
-   
+    break;
+
    case BallDirection::southeast:
     m_sprite.moveSpriteYNeg(m_movement.m_movement_speed_y_neg);
     m_sprite.moveSpriteXPos(m_movement.m_movement_speed_x_pos);
+    break;
    
    case BallDirection::south:
     m_sprite.moveSpriteYNeg(m_movement.m_movement_speed_y_neg);
+    break;
    
    case BallDirection::southwest:
     m_sprite.moveSpriteYNeg(m_movement.m_movement_speed_y_neg);
     m_sprite.moveSpriteXNeg(m_movement.m_movement_speed_x_neg);
+    break;
    
    case BallDirection::west:
     m_sprite.moveSpriteXNeg(m_movement.m_movement_speed_x_neg);
+    break;
    
    case BallDirection::northwest:
     m_sprite.moveSpriteYPos(m_movement.m_movement_speed_y_pos);
     m_sprite.moveSpriteXNeg(m_movement.m_movement_speed_x_neg);
+    break;
  } 
 }
 void Ball::startInitialMovement(const int& player_one_score, const int& player_two_score) {
