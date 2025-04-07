@@ -20,21 +20,9 @@ add_executable(${PROJECT_NAME}
   src/game_window.cpp
   src/sdl_error_util.h
   src/sdl_error_util.cpp
-  src/player.h 
-  src/player.cpp
-  src/ball.h 
-  src/ball.cpp 
   src/sprite.h 
   src/sprite.cpp
-  src/divider.h 
-  src/divider.cpp
-  src/movement.h 
-  src/movement.cpp 
   src/gamestate.h
-  src/collision.h
-  src/collision.cpp
-  src/score.h 
-  src/score.cpp
 )
 
 # External libraries
