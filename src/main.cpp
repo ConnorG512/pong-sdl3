@@ -11,14 +11,11 @@
 
 #include "game_window.h"
 #include "sdl_error_util.h"
-#include "gamestate.h"
-#include "sprite.h"
 
 int main (int, char **) {
   bool finished_running { false };
   // Create a game window on heap memory.
   std::unique_ptr<GameWindow> game_window{ new GameWindow("Pong")};
-  std::unique_ptr<Sprite> sprite{ new Sprite(400, 400, 10, 10, game_window->m_game_renderer)};
   // Get SDL Keyboard state
   const bool* keyboard_state = SDL_GetKeyboardState(nullptr);
 
@@ -39,7 +36,6 @@ int main (int, char **) {
       finished_running = true; 
     }
     // GAME LOGIC
-    sprite->drawSpriteToScreen();
 
     // Game logic here: 
       // Present backbuffer
