@@ -9,6 +9,7 @@
 #include <SDL3/SDL_keycode.h>
 #include <SDL3/SDL_keyboard.h>
 
+#include "ball.h"
 #include "game_window.h"
 #include "player_paddle.h"
 #include "sdl_error_util.h"
@@ -34,6 +35,11 @@ int main (int, char **) {
         26, // PADDLE UP KEY "W" 
         22  // PADDLE DOWN KEY "S"
         );
+  // Ball
+  auto ball = std::make_unique<Ball>(
+      800.0f, 450.0f, 24.0f, 24.0f, 6.0f, 
+      game_window->m_game_renderer
+      );
 
   while (!finished_running) {  
     SDL_Event event;
@@ -49,7 +55,7 @@ int main (int, char **) {
 
     player_paddle_1->drawSpriteToScreen();
     player_paddle_2->drawSpriteToScreen();
-    
+    ball->drawSpriteToScreen();  
     // Exit the game with escape.
     if (keyboard_state [SDL_SCANCODE_ESCAPE]) {
       finished_running = true; 

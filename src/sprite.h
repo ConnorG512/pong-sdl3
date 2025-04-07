@@ -6,7 +6,9 @@
 #include <cstdint>
 
 class Sprite {
-  // VARIABLES
+  //////////////////////
+  // TYPE DEFINITIONS 
+  //////////////////////
   protected:
   SDL_FRect m_sprite;
   SDL_Renderer* m_renderer { nullptr };
@@ -16,7 +18,9 @@ class Sprite {
   const std::uint8_t m_color_a { 255 };
   const float m_movement_speed { 6 };
 
+  //////////////////////
   // MEMBER FUNCTIONS
+  //////////////////////   
   public:
   Sprite(float position_x, float position_y, float size_x, float size_y, float movement_speed, SDL_Renderer* renderer);
   void drawSpriteToScreen() const ;

@@ -25,6 +25,8 @@ add_executable(${PROJECT_NAME}
   src/player_paddle.h 
   src/player_paddle.cpp
   src/gamestate.h
+  src/ball.h
+  src/ball.cpp 
 )
 
 # External libraries
