@@ -22,6 +22,8 @@ add_executable(${PROJECT_NAME}
   src/sdl_error_util.cpp
   src/sprite.h 
   src/sprite.cpp
+  src/player_paddle.h 
+  src/player_paddle.cpp
   src/gamestate.h
 )
 

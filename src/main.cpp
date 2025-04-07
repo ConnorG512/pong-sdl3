@@ -10,6 +10,7 @@
 #include <SDL3/SDL_keyboard.h>
 
 #include "game_window.h"
+#include "player_paddle.h"
 #include "sdl_error_util.h"
 
 int main (int, char **) {
@@ -18,6 +19,14 @@ int main (int, char **) {
   std::unique_ptr<GameWindow> game_window{ new GameWindow("Pong")};
   // Get SDL Keyboard state
   const bool* keyboard_state = SDL_GetKeyboardState(nullptr);
+  // Player Paddle
+  auto player_paddle_1 = std::make_unique<PlayerPaddle>(
+        100.0f, 300.0f, 250.0f, 250.0f, 6.0f,
+        game_window->m_game_renderer,
+        keyboard_state,
+        26, // PADDLE UP KEY "W" 
+        22  // PADDLE DOWN KEY "S"
+        );
 
   while (!finished_running) {  
     SDL_Event event;
@@ -30,6 +39,8 @@ int main (int, char **) {
 
     // Clear the backbuffer
     SDL_RenderClear(game_window->m_game_renderer);
+
+    player_paddle_1->drawSpriteToScreen();
     
     // Exit the game with escape.
     if (keyboard_state [SDL_SCANCODE_ESCAPE]) {
