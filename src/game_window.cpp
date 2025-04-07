@@ -17,11 +17,11 @@ GameWindow::~GameWindow() {
   SDL_DestroyRenderer(m_game_renderer);
   SDL_Quit();
 }
-int GameWindow::GetWindowSizeX() {
-  return m_window_size_x;
+const int* GameWindow::GetWindowSizeX() {
+  return &m_window_size_x;
 }
-int GameWindow::GetWindowSizeY() {
-  return m_window_size_y;
+const int* GameWindow::GetWindowSizeY() {
+  return &m_window_size_y;
 }
 
 // Private

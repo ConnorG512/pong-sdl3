@@ -38,7 +38,8 @@ int main (int, char **) {
   // Ball
   auto ball = std::make_unique<Ball>(
       800.0f-12.0f, 450.0f-12.0f, 24.0f, 24.0f, 6.0f, 
-      game_window->m_game_renderer
+      game_window->m_game_renderer,
+      game_window->GetWindowSizeY()
       );
 
   while (!finished_running) {  
@@ -55,7 +56,7 @@ int main (int, char **) {
 
     player_paddle_1->drawSpriteToScreen();
     player_paddle_2->drawSpriteToScreen();
-    ball->m_current_direction = Ball::BallDirection::north;
+    ball->m_current_direction = Ball::BallDirection::west;
     ball->drawSpriteToScreen();  
 
     // Exit the game with escape.
