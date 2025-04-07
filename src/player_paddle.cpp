@@ -17,3 +17,12 @@ void PlayerPaddle::moveAndGlideSprite() {
     m_sprite.y += m_movement_speed;
   }
 }
+void PlayerPaddle::IncreasePlayerScore(int score_to_add = 1) {
+  int current_score_result = m_current_score += score_to_add;
+}
+bool PlayerPaddle::CheckForGameWin() const {
+  if (m_current_score == m_maximum_score) {
+    return true;
+  }
+  return false;
+}
