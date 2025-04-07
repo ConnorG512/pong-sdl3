@@ -47,6 +47,7 @@ int main (int, char **) {
       finished_running = true; 
     }
     // GAME LOGIC
+    player_paddle_1->moveAndGlideSprite();
 
     // Game logic here: 
       // Present backbuffer

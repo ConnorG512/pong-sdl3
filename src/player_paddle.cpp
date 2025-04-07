@@ -12,8 +12,8 @@ PlayerPaddle::PlayerPaddle(float position_x, float position_y, float size_x, flo
 
 void PlayerPaddle::moveAndGlideSprite() {
   if (m_keyboard_state [m_paddle_up_key]) {
-    m_sprite.y += m_movement_speed;
-  } else if (m_keyboard_state [m_paddle_down_key]) {
     m_sprite.y -= m_movement_speed;
+  } else if (m_keyboard_state [m_paddle_down_key]) {
+    m_sprite.y += m_movement_speed;
   }
 }
