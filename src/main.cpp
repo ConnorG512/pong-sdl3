@@ -55,15 +55,18 @@ int main (int, char **) {
 
     player_paddle_1->drawSpriteToScreen();
     player_paddle_2->drawSpriteToScreen();
+    ball->m_current_direction = Ball::BallDirection::north;
     ball->drawSpriteToScreen();  
+
     // Exit the game with escape.
     if (keyboard_state [SDL_SCANCODE_ESCAPE]) {
       finished_running = true; 
     }
+
     // GAME LOGIC
     player_paddle_1->moveAndGlideSprite();
     player_paddle_2->moveAndGlideSprite();
-
+    ball->moveAndGlideSprite();
     // Game logic here: 
       // Present backbuffer
       SDL_RenderPresent(game_window->m_game_renderer); 
