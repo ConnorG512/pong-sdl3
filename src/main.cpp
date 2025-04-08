@@ -16,6 +16,7 @@
 #include "sdl_error_util.h"
 #include "gamestate.h"
 #include "collision_util.h"
+#include "number_gen_util.h"
 
 int main (int, char **) {
   bool finished_running { false };
@@ -96,11 +97,21 @@ int main (int, char **) {
       
         // Check for collision with player_paddle_1
         if (Collision::checkForTwoRectCollision(ball->m_sprite, player_paddle_1->m_sprite)) {
+          if (RandomNum::GenerateRandomNumber(2) == 0) {
+            ball->m_current_direction = Ball::BallDirection::northwest;
+          }
+          else {
           ball->m_current_direction = Ball::BallDirection::southwest;
+          }
         }
         // Check for collision with player_paddle_2 
         if (Collision::checkForTwoRectCollision(ball->m_sprite, player_paddle_2->m_sprite)) {
-          ball->m_current_direction = Ball::BallDirection::northeast;
+          if (RandomNum::GenerateRandomNumber(2) == 0) {
+            ball->m_current_direction = Ball::BallDirection::northeast;
+          }
+          else {
+          ball->m_current_direction = Ball::BallDirection::southeast;
+          }
         }
         // Check for collision with bottom of the screen
         if (Collision::checkForSingleValueCollisionHigherThan(ball->m_sprite.y, 900)) {

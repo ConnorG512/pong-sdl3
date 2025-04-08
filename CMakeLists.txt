@@ -29,6 +29,8 @@ add_executable(${PROJECT_NAME}
   src/ball.cpp 
   src/collision_util.h
   src/collision_util.cpp
+  src/number_gen_util.h
+  src/number_gen_util.cpp
 )
 
 # External libraries
