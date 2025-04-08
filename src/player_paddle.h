@@ -12,6 +12,7 @@ class PlayerPaddle : public Sprite {
     const std::uint8_t m_paddle_up_key {}; 
     const std::uint8_t m_paddle_down_key {}; 
     const int m_maximum_score { 3 };
+  public:
     int m_current_score { 0 };
   
   //////////////////////

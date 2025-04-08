@@ -96,8 +96,16 @@ int main (int, char **) {
         player_paddle_2->moveAndGlideSprite();
         ball->moveAndGlideSprite();
 
-        // Check to see if the ball has hit either end of the screen. 
-
+        // Check to see if the ball has hit either end of the screen.
+        float ball_location; 
+        ball_location = ball->getBallXCoOrdinate();
+        if (ball_location <= 0) {
+          player_paddle_2->m_current_score += 1;
+          current_gamestate = GameState::kickoff;
+        } else if (ball_location >= 1600) {
+          player_paddle_1->m_current_score += 1;
+          current_gamestate = GameState::kickoff;
+        }
         break;
       case GameState::finished:
         // TODO 
