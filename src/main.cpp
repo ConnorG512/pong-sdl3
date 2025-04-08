@@ -25,14 +25,14 @@ int main (int, char **) {
   const bool* keyboard_state = SDL_GetKeyboardState(nullptr);
   // Player Paddles
   auto player_paddle_1 = std::make_unique<PlayerPaddle>(
-        1500.0f, 300.0f, 10.0f, 250.0f, 6.0f,
+        1500.0f, 375.0f, 10.0f, 150.0f, 6.0f,
         game_window->m_game_renderer,
         keyboard_state,
         12, // PADDLE UP KEY "I" 
         14  // PADDLE DOWN KEY "K"
         );
   auto player_paddle_2 = std::make_unique<PlayerPaddle>(
-        100.0f, 300.0f, 10.0f, 250.0f, 6.0f,
+        100.0f, 375.0f, 10.0f, 150.0f, 6.0f,
         game_window->m_game_renderer,
         keyboard_state,
         26, // PADDLE UP KEY "W" 
@@ -92,6 +92,7 @@ int main (int, char **) {
         player_paddle_1->moveAndGlideSprite();
         player_paddle_2->moveAndGlideSprite();
         ball->moveAndGlideSprite();
+        
       
         // Check for collision with player_paddle_1
         if (Collision::checkForTwoRectCollision(ball->m_sprite, player_paddle_1->m_sprite)) {
@@ -118,9 +119,6 @@ int main (int, char **) {
             ball->m_current_direction = Ball::BallDirection::southwest;
           }
         }
-        if (Collision::checkForSingleValueCollisionLowerThan(ball->m_sprite.y, 0)) {
-
-        } 
         // Check to see if the ball has hit either end of the screen.
         float ball_location_x; 
         ball_location_x = ball->m_sprite.x;  
