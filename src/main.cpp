@@ -74,10 +74,9 @@ int main (int, char **) {
     // GAME LOGIC
     switch (current_gamestate) {
       case GameState::kickoff:
-        ball->m_current_direction = Ball::BallDirection::north;
-        current_gamestate = GameState::ingame;
+        // Position ball in the centre of the screen.
+        ball->setSpriteInitialPosition(800 - 12, 450 - 12);  
         int random_number; 
-        
         // Choose a kickoff direction 
         srand(time(0));
         random_number = rand() % 2;
@@ -91,10 +90,14 @@ int main (int, char **) {
         }
         current_gamestate = GameState::ingame;
         break;
+      
       case GameState::ingame:
         player_paddle_1->moveAndGlideSprite();
         player_paddle_2->moveAndGlideSprite();
         ball->moveAndGlideSprite();
+
+        // Check to see if the ball has hit either end of the screen. 
+
         break;
       case GameState::finished:
         // TODO 
