@@ -102,10 +102,17 @@ int main (int, char **) {
         if (ball_location <= 0) {
           player_paddle_2->m_current_score += 1;
           current_gamestate = GameState::kickoff;
+          if (player_paddle_2->m_current_score >= player_paddle_2->m_maximum_score) {
+            current_gamestate = GameState::finished;
+          }
         } else if (ball_location >= 1600) {
           player_paddle_1->m_current_score += 1;
           current_gamestate = GameState::kickoff;
+          if (player_paddle_1->m_current_score >= player_paddle_1->m_maximum_score) {
+            current_gamestate = GameState::finished;
+          }
         }
+        // Checking for end of game.
         break;
       case GameState::finished:
         // TODO 

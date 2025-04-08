@@ -11,8 +11,8 @@ class PlayerPaddle : public Sprite {
     const bool* m_keyboard_state { nullptr };
     const std::uint8_t m_paddle_up_key {}; 
     const std::uint8_t m_paddle_down_key {}; 
-    const int m_maximum_score { 3 };
   public:
+    const int m_maximum_score { 3 };
     int m_current_score { 0 };
   
   //////////////////////
@@ -24,7 +24,6 @@ class PlayerPaddle : public Sprite {
   void moveAndGlideSprite() override;   
   private:
     void IncreasePlayerScore(int score_to_add); 
-    bool CheckForGameWin() const;
 };
 
 #endif // !PLAYER_PADDLE_H
