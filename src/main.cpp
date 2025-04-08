@@ -4,6 +4,7 @@
 #include <SDL3/SDL_scancode.h>
 #include <SDL3/SDL_timer.h>
 #include <SDL3/SDL_video.h>
+#include <chrono>
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
@@ -11,6 +12,7 @@
 #include <SDL3/SDL_keycode.h>
 #include <SDL3/SDL_keyboard.h>
 #include <ostream>
+#include <thread>
 
 #include "ball.h"
 #include "game_window.h"
@@ -75,6 +77,7 @@ int main (int, char **) {
         ball->m_current_direction = Ball::BallDirection::north;
         current_gamestate = GameState::ingame;
         int random_number; 
+        
         // Choose a kickoff direction 
         srand(time(0));
         random_number = rand() % 2;
@@ -86,6 +89,7 @@ int main (int, char **) {
             ball->m_current_direction = Ball::BallDirection::west;
             break;
         }
+        current_gamestate = GameState::ingame;
         break;
       case GameState::ingame:
         player_paddle_1->moveAndGlideSprite();
