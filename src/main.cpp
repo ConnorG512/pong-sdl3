@@ -4,21 +4,18 @@
 #include <SDL3/SDL_scancode.h>
 #include <SDL3/SDL_timer.h>
 #include <SDL3/SDL_video.h>
-#include <chrono>
 #include <cstdio>
 #include <cstdlib>
-#include <iostream>
 #include <memory>
 #include <SDL3/SDL_keycode.h>
 #include <SDL3/SDL_keyboard.h>
-#include <ostream>
-#include <thread>
 
 #include "ball.h"
 #include "game_window.h"
 #include "player_paddle.h"
 #include "sdl_error_util.h"
 #include "gamestate.h"
+#include "collision_util.h"
 
 int main (int, char **) {
   bool finished_running { false };
@@ -95,18 +92,38 @@ int main (int, char **) {
         player_paddle_1->moveAndGlideSprite();
         player_paddle_2->moveAndGlideSprite();
         ball->moveAndGlideSprite();
-        
+      
         // Check for collision with player_paddle_1
-        // TODO
-
+        if (Collision::checkForTwoRectCollision(ball->m_sprite, player_paddle_1->m_sprite)) {
+          ball->m_current_direction = Ball::BallDirection::southwest;
+        }
         // Check for collision with player_paddle_2 
-        // TODO
-        
-        // Check for collision with top or bottom of the screen
-        
+        if (Collision::checkForTwoRectCollision(ball->m_sprite, player_paddle_2->m_sprite)) {
+          ball->m_current_direction = Ball::BallDirection::northeast;
+        }
+        // Check for collision with bottom of the screen
+        if (Collision::checkForSingleValueCollisionHigherThan(ball->m_sprite.y, 900)) {
+          if (ball->m_current_direction == Ball::BallDirection::southeast) {
+            ball->m_current_direction = Ball::BallDirection::northeast;
+          }
+          else if (ball->m_current_direction == Ball::BallDirection::southwest) {
+            ball->m_current_direction = Ball::BallDirection::northwest;
+          }
+        } 
+        // Check for collision with top of the screen
+        if (Collision::checkForSingleValueCollisionLowerThan(ball->m_sprite.y, 0)) {
+          if (ball->m_current_direction == Ball::BallDirection::northeast) {
+            ball->m_current_direction = Ball::BallDirection::southeast;
+          } else if (ball->m_current_direction == Ball::BallDirection::northwest) {
+            ball->m_current_direction = Ball::BallDirection::southwest;
+          }
+        }
+        if (Collision::checkForSingleValueCollisionLowerThan(ball->m_sprite.y, 0)) {
+
+        } 
         // Check to see if the ball has hit either end of the screen.
         float ball_location_x; 
-        ball_location_x = ball->getSpriteXCoOrdinate();  
+        ball_location_x = ball->m_sprite.x;  
         if (ball_location_x <= 0) {
           player_paddle_2->m_current_score += 1;
           current_gamestate = GameState::kickoff;

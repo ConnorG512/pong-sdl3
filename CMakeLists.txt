@@ -27,6 +27,8 @@ add_executable(${PROJECT_NAME}
   src/gamestate.h
   src/ball.h
   src/ball.cpp 
+  src/collision_util.h
+  src/collision_util.cpp
 )
 
 # External libraries

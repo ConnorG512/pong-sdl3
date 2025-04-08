@@ -10,16 +10,14 @@ class Sprite {
   // MEMBER VARIABLES 
   //////////////////////
   public:
-    float& getSpriteXCoOrdinate();
-    float& getSpriteYCoOrdinate();
+    SDL_FRect m_sprite;
   protected:
-  SDL_FRect m_sprite;
-  SDL_Renderer* m_renderer { nullptr };
-  const std::uint8_t m_color_r { 255 };
-  const std::uint8_t m_color_g { 255 };
-  const std::uint8_t m_color_b { 255 };
-  const std::uint8_t m_color_a { 255 };
-  const float m_movement_speed { 6 };
+    SDL_Renderer* m_renderer { nullptr };
+    const std::uint8_t m_color_r { 255 };
+    const std::uint8_t m_color_g { 255 };
+    const std::uint8_t m_color_b { 255 };
+    const std::uint8_t m_color_a { 255 };
+    const float m_movement_speed { 6 };
 
   //////////////////////
   // MEMBER FUNCTIONS
