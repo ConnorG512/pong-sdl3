@@ -28,8 +28,8 @@ class GameWindow {
   public:
     SDL_Window *m_game_window;
     SDL_Renderer *m_game_renderer;
-    int GetWindowSizeX();
-    int GetWindowSizeY();
+    const int* GetWindowSizeX();
+    const int* GetWindowSizeY();
     // CONSTRUCTOR
     // Create a window with a titel 1600 x 900 is the default resoltution
     GameWindow(const std::string& window_title);

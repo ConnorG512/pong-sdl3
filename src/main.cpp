@@ -5,32 +5,49 @@
 #include <SDL3/SDL_timer.h>
 #include <SDL3/SDL_video.h>
 #include <cstdio>
+#include <cstdlib>
 #include <memory>
 #include <SDL3/SDL_keycode.h>
 #include <SDL3/SDL_keyboard.h>
 
-#include "game_window.h"
-#include "player.h"
-#include "sdl_error_util.h"
-#include "divider.h"
-#include "gamestate.h"
 #include "ball.h"
+#include "game_window.h"
+#include "player_paddle.h"
+#include "sdl_error_util.h"
+#include "gamestate.h"
+#include "collision_util.h"
+#include "number_gen_util.h"
 
 int main (int, char **) {
   bool finished_running { false };
   // Create a game window on heap memory.
   std::unique_ptr<GameWindow> game_window{ new GameWindow("Pong")};
-  // Divider 
-  std::unique_ptr<Divider> background_divider{ new Divider(game_window->m_game_renderer)};
-  // Player creation
-  std::unique_ptr<Player> player_paddle_1 { new Player(100, 300, 10, 300, game_window->m_game_renderer)};
-  std::unique_ptr<Player> player_paddle_2 { new Player(1500, 300, 10 ,300, game_window->m_game_renderer)};
-  // Ball creation 
-  std::unique_ptr<Ball> ball { new Ball(800-12, 450-12, 24, 24, game_window->m_game_renderer)};
-
   // Get SDL Keyboard state
   const bool* keyboard_state = SDL_GetKeyboardState(nullptr);
+  // Player Paddles
+  auto player_paddle_1 = std::make_unique<PlayerPaddle>(
+        1500.0f, 375.0f, 10.0f, 150.0f, 9.0f,
+        game_window->m_game_renderer,
+        keyboard_state,
+        12, // PADDLE UP KEY "I" 
+        14  // PADDLE DOWN KEY "K"
+        );
+  auto player_paddle_2 = std::make_unique<PlayerPaddle>(
+        100.0f, 375.0f, 10.0f, 150.0f, 9.0f,
+        game_window->m_game_renderer,
+        keyboard_state,
+        26, // PADDLE UP KEY "W" 
+        22  // PADDLE DOWN KEY "S"
+        );
+  // Ball
+  auto ball = std::make_unique<Ball>(
+      800.0f-12.0f, 450.0f-12.0f, 24.0f, 24.0f, 9.0f, 
+      game_window->m_game_renderer,
+      game_window->GetWindowSizeY()
+      );
 
+  // Setting the initial game state
+  static GameState current_gamestate = GameState::kickoff;
   while (!finished_running) {  
     SDL_Event event;
 
@@ -42,55 +59,102 @@ int main (int, char **) {
 
     // Clear the backbuffer
     SDL_RenderClear(game_window->m_game_renderer);
-    // Divider 
-    background_divider->drawDividerOnScreen();
-    // Player sprites
-    player_paddle_1->colorSprite();
-    player_paddle_2->colorSprite();
-    
-    // Ball logic
-    ball->drawSpriteOnScreen();
-    
+
+    player_paddle_1->drawSpriteToScreen();
+    player_paddle_2->drawSpriteToScreen();
+    ball->drawSpriteToScreen();  
+
     // Exit the game with escape.
     if (keyboard_state [SDL_SCANCODE_ESCAPE]) {
       finished_running = true; 
     }
-    // GAME LOGIC
-    // Start on the kickoff gamestate
-    static GameState current_gamestate = GameState::kickoff;
-    switch (current_gamestate) {
 
+    // GAME LOGIC
+    switch (current_gamestate) {
       case GameState::kickoff:
-        ball->startInitialMovement(player_paddle_1->GetPlayerScore(), player_paddle_2->GetPlayerScore());
+        // Position ball in the centre of the screen.
+        ball->setSpriteInitialPosition(800 - 12, 450 - 12);  
+        int random_number; 
+        // Choose a kickoff direction 
+        srand(time(0));
+        random_number = rand() % 2;
+        switch (random_number) {
+          case 0:
+            ball->m_current_direction = Ball::BallDirection::east;
+            break;
+          case 1:
+            ball->m_current_direction = Ball::BallDirection::west;
+            break;
+        }
         current_gamestate = GameState::ingame;
         break;
-
+      
       case GameState::ingame:
-        // Player control
-        if ( keyboard_state [SDL_SCANCODE_W]) {
-          player_paddle_1->moveYPos();
+        player_paddle_1->moveAndGlideSprite();
+        player_paddle_2->moveAndGlideSprite();
+        ball->moveAndGlideSprite();
+        
+      
+        // Check for collision with player_paddle_1
+        if (Collision::checkForTwoRectCollision(ball->m_sprite, player_paddle_1->m_sprite)) {
+          if (RandomNum::GenerateRandomNumber(2) == 0) {
+            ball->m_current_direction = Ball::BallDirection::northwest;
+          }
+          else {
+          ball->m_current_direction = Ball::BallDirection::southwest;
+          }
         }
-        if (keyboard_state [SDL_SCANCODE_S]) {
-          player_paddle_1->moveYNeg();
+        // Check for collision with player_paddle_2 
+        if (Collision::checkForTwoRectCollision(ball->m_sprite, player_paddle_2->m_sprite)) {
+          if (RandomNum::GenerateRandomNumber(2) == 0) {
+            ball->m_current_direction = Ball::BallDirection::northeast;
+          }
+          else {
+          ball->m_current_direction = Ball::BallDirection::southeast;
+          }
         }
-        if (keyboard_state [SDL_SCANCODE_I]) {
-          player_paddle_2->moveYPos();
+        // Check for collision with bottom of the screen
+        if (Collision::checkForSingleValueCollisionHigherThan(ball->m_sprite.y, 900)) {
+          if (ball->m_current_direction == Ball::BallDirection::southeast) {
+            ball->m_current_direction = Ball::BallDirection::northeast;
+          }
+          else if (ball->m_current_direction == Ball::BallDirection::southwest) {
+            ball->m_current_direction = Ball::BallDirection::northwest;
+          }
+        } 
+        // Check for collision with top of the screen
+        if (Collision::checkForSingleValueCollisionLowerThan(ball->m_sprite.y, 0)) {
+          if (ball->m_current_direction == Ball::BallDirection::northeast) {
+            ball->m_current_direction = Ball::BallDirection::southeast;
+          } else if (ball->m_current_direction == Ball::BallDirection::northwest) {
+            ball->m_current_direction = Ball::BallDirection::southwest;
+          }
         }
-        if (keyboard_state [SDL_SCANCODE_K]) {
-          player_paddle_2->moveYNeg();
+        // Check to see if the ball has hit either end of the screen.
+        float ball_location_x; 
+        ball_location_x = ball->m_sprite.x;  
+        if (ball_location_x <= 0) {
+          player_paddle_2->m_current_score += 1;
+          current_gamestate = GameState::kickoff;
+          if (player_paddle_2->m_current_score >= player_paddle_2->m_maximum_score) {
+            current_gamestate = GameState::finished;
+          }
+        } else if (ball_location_x >= 1600) {
+          player_paddle_1->m_current_score += 1;
+          current_gamestate = GameState::kickoff;
+          if (player_paddle_1->m_current_score >= player_paddle_1->m_maximum_score) {
+            current_gamestate = GameState::finished;
+          }
         }
-        ball->moveBall();
-
+        // Checking for end of game.
         break;
-
       case GameState::finished:
-        printf("Finished!");
+        // Exit the game
+        finished_running = true;
         break;
-    };
-
-    // Game logic here: 
-      // Present backbuffer
-      SDL_RenderPresent(game_window->m_game_renderer); 
+    }
+    // Present backbuffer
+    SDL_RenderPresent(game_window->m_game_renderer); 
   }
   return 0;
 }
