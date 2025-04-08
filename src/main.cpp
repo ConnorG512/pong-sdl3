@@ -5,14 +5,18 @@
 #include <SDL3/SDL_timer.h>
 #include <SDL3/SDL_video.h>
 #include <cstdio>
+#include <cstdlib>
+#include <iostream>
 #include <memory>
 #include <SDL3/SDL_keycode.h>
 #include <SDL3/SDL_keyboard.h>
+#include <ostream>
 
 #include "ball.h"
 #include "game_window.h"
 #include "player_paddle.h"
 #include "sdl_error_util.h"
+#include "gamestate.h"
 
 int main (int, char **) {
   bool finished_running { false };
@@ -42,6 +46,8 @@ int main (int, char **) {
       game_window->GetWindowSizeY()
       );
 
+  // Setting the initial game state
+  static GameState current_gamestate = GameState::kickoff;
   while (!finished_running) {  
     SDL_Event event;
 
@@ -56,7 +62,6 @@ int main (int, char **) {
 
     player_paddle_1->drawSpriteToScreen();
     player_paddle_2->drawSpriteToScreen();
-    ball->m_current_direction = Ball::BallDirection::west;
     ball->drawSpriteToScreen();  
 
     // Exit the game with escape.
@@ -65,12 +70,37 @@ int main (int, char **) {
     }
 
     // GAME LOGIC
-    player_paddle_1->moveAndGlideSprite();
-    player_paddle_2->moveAndGlideSprite();
-    ball->moveAndGlideSprite();
-    // Game logic here: 
-      // Present backbuffer
-      SDL_RenderPresent(game_window->m_game_renderer); 
+    switch (current_gamestate) {
+      case GameState::kickoff:
+        ball->m_current_direction = Ball::BallDirection::north;
+        current_gamestate = GameState::ingame;
+        int random_number; 
+        // Choose a kickoff direction 
+        srand(time(0));
+        random_number = rand() % 2;
+        switch (random_number) {
+          case 0:
+            ball->m_current_direction = Ball::BallDirection::east;
+            break;
+          case 1:
+            ball->m_current_direction = Ball::BallDirection::west;
+            break;
+        }
+        break;
+      case GameState::ingame:
+        player_paddle_1->moveAndGlideSprite();
+        player_paddle_2->moveAndGlideSprite();
+        ball->moveAndGlideSprite();
+        break;
+      case GameState::finished:
+        // TODO 
+        printf("Finished called!");
+        // Exit the game
+        finished_running = true;
+        break;
+    }
+    // Present backbuffer
+    SDL_RenderPresent(game_window->m_game_renderer); 
   }
   return 0;
 }

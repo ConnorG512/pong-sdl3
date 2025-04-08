@@ -41,3 +41,6 @@ void Ball::moveAndGlideSprite() {
       break;
   } 
 }
+float& Ball::getBallXCoOrdinate() {
+  return m_sprite.x;
+}
