@@ -10,8 +10,8 @@ class Sprite {
   // MEMBER VARIABLES 
   //////////////////////
   public:
-    float& getBallXCoOrdinate();
-    float& getBallYCoOrdinate();
+    float& getSpriteXCoOrdinate();
+    float& getSpriteYCoOrdinate();
   protected:
   SDL_FRect m_sprite;
   SDL_Renderer* m_renderer { nullptr };

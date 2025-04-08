@@ -106,7 +106,7 @@ int main (int, char **) {
         
         // Check to see if the ball has hit either end of the screen.
         float ball_location_x; 
-        ball_location_x = ball->getBallXCoOrdinate();  
+        ball_location_x = ball->getSpriteXCoOrdinate();  
         if (ball_location_x <= 0) {
           player_paddle_2->m_current_score += 1;
           current_gamestate = GameState::kickoff;
