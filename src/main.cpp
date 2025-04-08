@@ -95,17 +95,25 @@ int main (int, char **) {
         player_paddle_1->moveAndGlideSprite();
         player_paddle_2->moveAndGlideSprite();
         ball->moveAndGlideSprite();
+        
+        // Check for collision with player_paddle_1
+        // TODO
 
+        // Check for collision with player_paddle_2 
+        // TODO
+        
+        // Check for collision with top or bottom of the screen
+        
         // Check to see if the ball has hit either end of the screen.
-        float ball_location; 
-        ball_location = ball->getBallXCoOrdinate();
-        if (ball_location <= 0) {
+        float ball_location_x; 
+        ball_location_x = ball->getBallXCoOrdinate();  
+        if (ball_location_x <= 0) {
           player_paddle_2->m_current_score += 1;
           current_gamestate = GameState::kickoff;
           if (player_paddle_2->m_current_score >= player_paddle_2->m_maximum_score) {
             current_gamestate = GameState::finished;
           }
-        } else if (ball_location >= 1600) {
+        } else if (ball_location_x >= 1600) {
           player_paddle_1->m_current_score += 1;
           current_gamestate = GameState::kickoff;
           if (player_paddle_1->m_current_score >= player_paddle_1->m_maximum_score) {
@@ -115,8 +123,6 @@ int main (int, char **) {
         // Checking for end of game.
         break;
       case GameState::finished:
-        // TODO 
-        printf("Finished called!");
         // Exit the game
         finished_running = true;
         break;

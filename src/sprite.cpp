@@ -19,3 +19,9 @@ void Sprite::setSpriteInitialPosition(const int x_position, const int y_position
   m_sprite.x = x_position;
   m_sprite.y = y_position;
 }
+float& Sprite::getBallXCoOrdinate() {
+  return m_sprite.x;
+}
+float& Sprite::getBallYCoOrdinate() {
+  return m_sprite.y;
+}

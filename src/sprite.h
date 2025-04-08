@@ -7,8 +7,11 @@
 
 class Sprite {
   //////////////////////
-  // TYPE DEFINITIONS 
+  // MEMBER VARIABLES 
   //////////////////////
+  public:
+    float& getBallXCoOrdinate();
+    float& getBallYCoOrdinate();
   protected:
   SDL_FRect m_sprite;
   SDL_Renderer* m_renderer { nullptr };

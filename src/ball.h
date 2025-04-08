@@ -33,7 +33,6 @@ class Ball : public Sprite {
     Ball(float position_x, float position_y, float size_x, float size_y, float movement_speed, SDL_Renderer* renderer,
         const int* screen_width);
     void moveAndGlideSprite() override;
-    float& getBallXCoOrdinate();
   private:
 };
 
