@@ -53,7 +53,10 @@ int main (int, char **) {
     SDL_Delay(16);
     // Background colour
     SDL_SetRenderDrawColor(game_window->m_game_renderer, 0, 0, 0, 255);
-    while (SDL_PollEvent(&event)) {  
+    while (SDL_PollEvent(&event)) { 
+      if (event.type == SDL_EVENT_QUIT) { // quit the game when the exit button on the window has been pressed.
+        finished_running = true;
+      } 
     } 
 
     // Clear the backbuffer
