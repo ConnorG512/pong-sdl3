@@ -5,7 +5,6 @@
 Ball::Ball(float position_x, float position_y, float size_x, float size_y, float movement_speed, SDL_Renderer* renderer, 
     const int screen_width)
   : Sprite(position_x, position_y, size_x, size_y, movement_speed, renderer) {
-    assert(screen_width && "\"screen_width\" is null!");
   } 
 
 void Ball::moveAndGlideSprite() {
