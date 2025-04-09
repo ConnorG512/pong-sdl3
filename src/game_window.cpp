@@ -26,7 +26,7 @@ const int GameWindow::GetWindowSizeY() {
 // Private
 void GameWindow::createWindow() {
   m_game_window = SDL_CreateWindow(m_window_title.c_str(), m_window_size_x, m_window_size_y, SDL_WINDOW_KEYBOARD_GRABBED);
-    assert(!m_game_window && "game_window should not be null!");
+    assert(m_game_window && "game_window should not be null!");
 }
 void GameWindow::createRenderer() {
   m_game_renderer = SDL_CreateRenderer(m_game_window, nullptr);
