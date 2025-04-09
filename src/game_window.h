@@ -26,8 +26,8 @@ class GameWindow {
   public:
     SDL_Window *m_game_window;
     SDL_Renderer *m_game_renderer;
-    const int* GetWindowSizeX();
-    const int* GetWindowSizeY();
+    const int GetWindowSizeX();
+    const int GetWindowSizeY();
     // CONSTRUCTOR
     GameWindow(const std::string& window_title);
     // DESTRUCTOR
