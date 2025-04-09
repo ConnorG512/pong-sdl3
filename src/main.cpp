@@ -6,6 +6,7 @@
 #include <SDL3/SDL_video.h>
 #include <cstdio>
 #include <cstdlib>
+#include <ctime>
 #include <memory>
 #include <SDL3/SDL_keycode.h>
 #include <SDL3/SDL_keyboard.h>
@@ -13,12 +14,14 @@
 #include "ball.h"
 #include "game_window.h"
 #include "player_paddle.h"
-#include "sdl_error_util.h"
 #include "gamestate.h"
 #include "collision_util.h"
 #include "number_gen_util.h"
 
 int main (int, char **) {
+  // Generate a random seed at the start of the application.
+  srand((unsigned) time(NULL));
+
   bool finished_running { false };
   // Create a game window on heap memory.
   std::unique_ptr<GameWindow> game_window{ new GameWindow("Pong")};
@@ -43,7 +46,7 @@ int main (int, char **) {
   auto ball = std::make_unique<Ball>(
       800.0f-12.0f, 450.0f-12.0f, 24.0f, 24.0f, 9.0f, 
       game_window->m_game_renderer,
-      game_window->GetWindowSizeY()
+      game_window->m_window_size_y
       );
 
   // Setting the initial game state
@@ -54,7 +57,10 @@ int main (int, char **) {
     SDL_Delay(16);
     // Background colour
     SDL_SetRenderDrawColor(game_window->m_game_renderer, 0, 0, 0, 255);
-    while (SDL_PollEvent(&event)) {  
+    while (SDL_PollEvent(&event)) { 
+      if (event.type == SDL_EVENT_QUIT) { // quit the game when the exit button on the window has been pressed.
+        finished_running = true;
+      } 
     } 
 
     // Clear the backbuffer
@@ -73,7 +79,7 @@ int main (int, char **) {
     switch (current_gamestate) {
       case GameState::kickoff:
         // Position ball in the centre of the screen.
-        ball->setSpriteInitialPosition(800 - 12, 450 - 12);  
+        ball->setSpriteInitialPosition(800 - ball->m_sprite.w / 2, 450 - ball->m_sprite.h / 2);  
         int random_number; 
         // Choose a kickoff direction 
         srand(time(0));
@@ -94,7 +100,6 @@ int main (int, char **) {
         player_paddle_2->moveAndGlideSprite();
         ball->moveAndGlideSprite();
         
-      
         // Check for collision with player_paddle_1
         if (Collision::checkForTwoRectCollision(ball->m_sprite, player_paddle_1->m_sprite)) {
           if (RandomNum::GenerateRandomNumber(2) == 0) {
@@ -114,7 +119,7 @@ int main (int, char **) {
           }
         }
         // Check for collision with bottom of the screen
-        if (Collision::checkForSingleValueCollisionHigherThan(ball->m_sprite.y, 900)) {
+        if (Collision::checkForSingleValueCollisionHigherThan(ball->m_sprite.y, game_window->m_window_size_y)) {
           if (ball->m_current_direction == Ball::BallDirection::southeast) {
             ball->m_current_direction = Ball::BallDirection::northeast;
           }
@@ -139,7 +144,7 @@ int main (int, char **) {
           if (player_paddle_2->m_current_score >= player_paddle_2->m_maximum_score) {
             current_gamestate = GameState::finished;
           }
-        } else if (ball_location_x >= 1600) {
+        } else if (ball_location_x >= game_window->m_window_size_x) {
           player_paddle_1->m_current_score += 1;
           current_gamestate = GameState::kickoff;
           if (player_paddle_1->m_current_score >= player_paddle_1->m_maximum_score) {

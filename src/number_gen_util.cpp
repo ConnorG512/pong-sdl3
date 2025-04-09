@@ -3,7 +3,6 @@
 #include <ctime>
 
 int RandomNum::GenerateRandomNumber(const int max_value) {
-  srand((unsigned) time(NULL));
   int result = rand() % (max_value + 1);
   return result;
 } 

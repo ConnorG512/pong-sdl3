@@ -10,13 +10,13 @@ bool Collision::checkForTwoRectCollision(const SDL_FRect& object_a, const SDL_FR
   }
   return false;
 }
-bool Collision::checkForSingleValueCollisionHigherThan(const float& object_position, const int& value) {
+bool Collision::checkForSingleValueCollisionHigherThan(const float object_position, const int value) {
   if (object_position >= value) {
     return true;
   }
   return false;
 }
-bool Collision::checkForSingleValueCollisionLowerThan(const float& object_position, const int& value) {
+bool Collision::checkForSingleValueCollisionLowerThan(const float object_position, const int value) {
   if (object_position <= value) {
     return true;
   }

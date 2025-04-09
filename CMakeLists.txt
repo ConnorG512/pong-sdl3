@@ -18,8 +18,6 @@ add_executable(${PROJECT_NAME}
   src/main.cpp
   src/game_window.h 
   src/game_window.cpp
-  src/sdl_error_util.h
-  src/sdl_error_util.cpp
   src/sprite.h 
   src/sprite.cpp
   src/player_paddle.h 

@@ -6,22 +6,16 @@
 #include <cstdint>
 
 class Sprite {
-  //////////////////////
-  // MEMBER VARIABLES 
-  //////////////////////
   public:
     SDL_FRect m_sprite;
   protected:
     SDL_Renderer* m_renderer { nullptr };
-    const std::uint8_t m_color_r { 255 };
-    const std::uint8_t m_color_g { 255 };
-    const std::uint8_t m_color_b { 255 };
-    const std::uint8_t m_color_a { 255 };
+    static constexpr std::uint8_t m_color_r { 255 };
+    static constexpr std::uint8_t m_color_g { 255 };
+    static constexpr std::uint8_t m_color_b { 255 };
+    static constexpr std::uint8_t m_color_a { 255 };
     const float m_movement_speed { 6 };
 
-  //////////////////////
-  // MEMBER FUNCTIONS
-  //////////////////////   
   public:
   Sprite(float position_x, float position_y, float size_x, float size_y, float movement_speed, SDL_Renderer* renderer);
   void drawSpriteToScreen() const ;

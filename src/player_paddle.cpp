@@ -1,5 +1,6 @@
 #include "player_paddle.h"
 #include <SDL3/SDL_scancode.h>
+#include <cassert>
 #include <cstdint>
 
 PlayerPaddle::PlayerPaddle(float position_x, float position_y, float size_x, float size_y, float movement_speed, SDL_Renderer* renderer,
@@ -11,6 +12,7 @@ PlayerPaddle::PlayerPaddle(float position_x, float position_y, float size_x, flo
   }
 
 void PlayerPaddle::moveAndGlideSprite() {
+  assert(m_keyboard_state && "m_keyboard_state should not be a nullptr, pointer to SDL_GetKeyboardState is needed.");
   if (m_keyboard_state [m_paddle_up_key]) {
     m_sprite.y -= m_movement_speed;
   } else if (m_keyboard_state [m_paddle_down_key]) {
