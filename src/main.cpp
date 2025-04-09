@@ -13,7 +13,6 @@
 #include "ball.h"
 #include "game_window.h"
 #include "player_paddle.h"
-#include "sdl_error_util.h"
 #include "gamestate.h"
 #include "collision_util.h"
 #include "number_gen_util.h"
