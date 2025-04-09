@@ -102,20 +102,30 @@ int main (int, char **) {
         
         // Check for collision with player_paddle_1
         if (Collision::checkForTwoRectCollision(ball->m_sprite, player_paddle_1->m_sprite)) {
-          if (RandomNum::GenerateRandomNumber(2) == 0) {
-            ball->m_current_direction = Ball::BallDirection::northwest;
-          }
-          else {
-          ball->m_current_direction = Ball::BallDirection::southwest;
+          switch (RandomNum::GenerateRandomNumber(3)) {
+            case 0:
+              ball->m_current_direction = Ball::BallDirection::northwest;
+              break;
+            case 1:
+              ball->m_current_direction = Ball::BallDirection::southwest;
+              break;
+            case 2:
+              ball->m_current_direction = Ball::BallDirection::west;
+              break;
           }
         }
         // Check for collision with player_paddle_2 
         if (Collision::checkForTwoRectCollision(ball->m_sprite, player_paddle_2->m_sprite)) {
-          if (RandomNum::GenerateRandomNumber(2) == 0) {
-            ball->m_current_direction = Ball::BallDirection::northeast;
-          }
-          else {
-          ball->m_current_direction = Ball::BallDirection::southeast;
+          switch (RandomNum::GenerateRandomNumber(3)) {
+            case 0:
+              ball->m_current_direction = Ball::BallDirection::northeast;
+              break;
+            case 1:
+              ball->m_current_direction = Ball::BallDirection::southeast;
+              break;
+            case 2:
+              ball->m_current_direction = Ball::BallDirection::east;
+              break;
           }
         }
         // Check for collision with bottom of the screen
