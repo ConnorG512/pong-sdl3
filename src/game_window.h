@@ -14,8 +14,8 @@ class GameWindow {
   private:
     // Variables
     std::string m_window_title;
-    const int m_window_size_x { 1600 };
-    const int m_window_size_y { 900 };
+    static constexpr int m_window_size_x { 1600 };
+    static constexpr int m_window_size_y { 900 };
     bool m_done { false };
 
     //METHOD
@@ -29,7 +29,6 @@ class GameWindow {
     const int* GetWindowSizeX();
     const int* GetWindowSizeY();
     // CONSTRUCTOR
-    // Create a window with a titel 1600 x 900 is the default resoltution
     GameWindow(const std::string& window_title);
     // DESTRUCTOR
     // Will Destroy the window and quit SDL
