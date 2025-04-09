@@ -93,7 +93,6 @@ int main (int, char **) {
         player_paddle_2->moveAndGlideSprite();
         ball->moveAndGlideSprite();
         
-      
         // Check for collision with player_paddle_1
         if (Collision::checkForTwoRectCollision(ball->m_sprite, player_paddle_1->m_sprite)) {
           if (RandomNum::GenerateRandomNumber(2) == 0) {
@@ -113,7 +112,7 @@ int main (int, char **) {
           }
         }
         // Check for collision with bottom of the screen
-        if (Collision::checkForSingleValueCollisionHigherThan(ball->m_sprite.y, 900)) {
+        if (Collision::checkForSingleValueCollisionHigherThan(ball->m_sprite.y, game_window->m_window_size_y)) {
           if (ball->m_current_direction == Ball::BallDirection::southeast) {
             ball->m_current_direction = Ball::BallDirection::northeast;
           }
@@ -138,7 +137,7 @@ int main (int, char **) {
           if (player_paddle_2->m_current_score >= player_paddle_2->m_maximum_score) {
             current_gamestate = GameState::finished;
           }
-        } else if (ball_location_x >= 1600) {
+        } else if (ball_location_x >= game_window->m_window_size_x) {
           player_paddle_1->m_current_score += 1;
           current_gamestate = GameState::kickoff;
           if (player_paddle_1->m_current_score >= player_paddle_1->m_maximum_score) {
