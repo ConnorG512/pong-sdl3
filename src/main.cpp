@@ -75,7 +75,7 @@ int main (int, char **) {
     switch (current_gamestate) {
       case GameState::kickoff:
         // Position ball in the centre of the screen.
-        ball->setSpriteInitialPosition(800 - 12, 450 - 12);  
+        ball->setSpriteInitialPosition(800 - ball->m_sprite.w / 2, 450 - ball->m_sprite.h / 2);  
         int random_number; 
         // Choose a kickoff direction 
         srand(time(0));
