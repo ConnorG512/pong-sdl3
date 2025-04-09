@@ -6,6 +6,7 @@
 #include <SDL3/SDL_video.h>
 #include <cstdio>
 #include <cstdlib>
+#include <ctime>
 #include <memory>
 #include <SDL3/SDL_keycode.h>
 #include <SDL3/SDL_keyboard.h>
@@ -18,6 +19,9 @@
 #include "number_gen_util.h"
 
 int main (int, char **) {
+  // Generate a random seed at the start of the application.
+  srand((unsigned) time(NULL));
+
   bool finished_running { false };
   // Create a game window on heap memory.
   std::unique_ptr<GameWindow> game_window{ new GameWindow("Pong")};
