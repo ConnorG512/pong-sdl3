@@ -42,7 +42,7 @@ int main (int, char **) {
   auto ball = std::make_unique<Ball>(
       800.0f-12.0f, 450.0f-12.0f, 24.0f, 24.0f, 9.0f, 
       game_window->m_game_renderer,
-      game_window->GetWindowSizeY()
+      game_window->m_window_size_y
       );
 
   // Setting the initial game state
